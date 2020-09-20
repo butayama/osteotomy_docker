@@ -43,12 +43,12 @@ from os.path import join
 import sys
 from app.file_handling import text_file_object
 
+
 class CalculateAngles:
 
     def copyright_license_popup():
         """not used yet"""
         system("gnome-terminal --disable-factory")
-
 
     def screen_out(filename, c_a_d, s_a_d, t_a_d, c_a, s_a, t_a, a_tad, a_oa, a_azi, a_ele, a_aor):
         """
@@ -93,7 +93,6 @@ class CalculateAngles:
         results are stored in {filename}
     
         """)
-
 
     def txt_out(filename, c_a_d, s_a_d, t_a_d, c_a, s_a, t_a, a_tad, a_oa, a_azi, a_ele, a_aor):
         """
@@ -156,7 +155,6 @@ class CalculateAngles:
                 """)
             sys.stdout = sys.__stdout__
 
-
     def calculate(c_a_d=0.0, s_a_d=0.0, t_a_d=0.0):
         """
         Calculation of osteotomy angles according to Sangeorzan, Judd (1989)
@@ -174,7 +172,6 @@ class CalculateAngles:
         a_ele = atan2(2 * sin(a_tad) * cos(0.5 * t_a), sin(t_a) * (1 + cos(a_tad)))
         a_aor = acos(0.5 * (cos(t_a) + cos(a_tad) + cos(t_a) * cos(a_tad) - 1))
         return filename, c_a_d, s_a_d, t_a_d, c_a, s_a, t_a, a_tad, a_oa, a_azi, a_ele, a_aor
-
 
     # if __name__ == "__main__":
     #     filename, c_a_d, s_a_d, t_a_d, c_a, s_a, t_a, a_tad, a_oa, a_azi, a_ele, a_aor = calculate()
