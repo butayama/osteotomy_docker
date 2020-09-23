@@ -1,4 +1,5 @@
 {% extends "bootstrap/base.html" %}
+{#{% extends "shared/_layout.html" %}#}
 
 {% block title %}Osteotomy{% endblock %}
 
@@ -23,6 +24,7 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
+                <li><a href="{{ url_for('auth.index') }}">CASE</a></li>
                 <li><a href="{{ url_for('auth.index') }}">CASE</a></li>
                 <li><a href="{{ url_for('main.op_planning') }}">OP_PLANNING</a></li>
                 <li><a href="{{ url_for('auth.op') }}">OP</a></li>
