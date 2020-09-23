@@ -11,8 +11,6 @@ class NavItems:
                     View('OP', 'auth.op'),
                     View('POST_OP', 'auth.post_op'),
                     View('ABOUT', 'auth.about'),
-                    View('FORUM', 'main.index'),
-                    View('LOG IN', 'auth.login'),
 
                     )
 
@@ -27,4 +25,6 @@ class NavItems:
                       View('DETAILS_01', 'auth.details_01'),
                       View('POST_OP1', 'auth.post_op1'),
                       View('ABOUT_01', 'auth.about_01'),
+                      View('FORUM', 'main.index'),
+                      View('LOG IN', 'auth.login'),
                       )

@@ -188,7 +188,7 @@ def about_01():
 
 
 @auth.route('/case')
-@login_required
+# @login_required
 def case():
     return render_template('auth/case.html')
 
