@@ -20,12 +20,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="{{ url_for('main.index') }}">Osteotomy</a>
+{#            <a class="navbar-brand" href="{{ url_for('main.index') }}">Osteotomy</a>#}
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li><a href="{{ url_for('auth.index') }}">CASE</a></li>
-                <li><a href="{{ url_for('auth.index') }}">CASE</a></li>
+                <li><a href="{{ url_for('main.index') }}">Osteotomy</a>/li>
+                <li><a href="{{ url_for('auth.case') }}">CASE</a></li>
                 <li><a href="{{ url_for('main.op_planning') }}">OP_PLANNING</a></li>
                 <li><a href="{{ url_for('auth.op') }}">OP</a></li>
                 <li><a href="{{ url_for('auth.post_op') }}">POST_OP</a></li>

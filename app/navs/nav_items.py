@@ -6,11 +6,12 @@ from flask_nav.elements import Navbar, View
 
 class NavItems:
     topbar = Navbar('',
-                    View('CASE', 'auth.case'),
+                    View('OSTEOTOMY', 'main.index'),
+                    View('CASE', 'main.case'),
                     View('OP_PLANNING', 'main.op_planning'),
-                    View('OP', 'auth.op'),
-                    View('POST_OP', 'auth.post_op'),
-                    View('ABOUT', 'auth.about'),
+                    View('OP', 'main.op'),
+                    View('POST_OP', 'main.post_op'),
+                    View('ABOUT', 'main.about'),
 
                     )
 

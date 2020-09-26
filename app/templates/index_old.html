@@ -1,14 +1,14 @@
-{% extends "shared/_no_login.html" %}
+{% extends "shared/_layout.html" %}
 {#{% import "bootstrap/wtf.html" as wtf %}#}
 {% import "_macros.html" as macros %}
 {#{% extends "shared/_layout.html" %}#}
-{% import "bootstrap/wtf.html" as wtf %}
-{% block title %}Osteotomy{% endblock %}
+{#{% import "bootstrap/wtf.html" as wtf %}#}
+{% block title %}Osteotomy-Start{% endblock %}
 {#{%  block title %}OP Planning{% endblock %}#}
 
 {% block page_content_middle %}
 {#{% block page_content %}#}
-<div class="page-header">
+{#<div class="page-header">
     <h1>Hello, {% if current_user.is_authenticated %}{{ current_user.username }}{% else %}welcome to the deployment test
         for Osteotomy{% endif %}!</h1>
 </div>
@@ -30,7 +30,7 @@
 <div class="pagination">
     {{ macros.pagination_widget(pagination, '.index') }}
 </div>
-{% endif %}
+{% endif %}#}
 {% endblock %}
 
 {% block scripts %}

@@ -174,7 +174,7 @@ def change_email(token):
 
 @auth.route('/')
 def index():
-    return render_template('auth/index.html')
+    return render_template('index.html')
 
 
 @auth.route('/about')
