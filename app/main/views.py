@@ -87,6 +87,11 @@ def op_planning_results():
                            int=int)
 
 
+@main.route('/measure')
+def measure():
+    return render_template('measure.html')
+
+
 @main.route('/op')
 def op():
     return render_template('op.html')
@@ -95,6 +100,7 @@ def op():
 @main.route('/post_op')
 def post_op():
     return render_template('post_op.html')
+
 
 @main.route('/about')
 def about():

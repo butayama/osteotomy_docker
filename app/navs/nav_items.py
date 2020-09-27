@@ -9,6 +9,7 @@ class NavItems:
                     View('OSTEOTOMY', 'main.index'),
                     View('CASE', 'main.case'),
                     View('OP_PLANNING', 'main.op_planning'),
+                    View('MEASURE', 'main.measure'),
                     View('OP', 'main.op'),
                     View('POST_OP', 'main.post_op'),
                     View('ABOUT', 'main.about'),
