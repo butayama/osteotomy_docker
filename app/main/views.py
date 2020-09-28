@@ -42,14 +42,9 @@ def case():
 
 @main.route('/op_planning', methods=['GET', 'POST'])
 def op_planning():
-    if os.environ['FLASK_DEBUG']:  # TODO muss bei deploy geändert werden
-        coronal_component_C = 27.1
-        sagittal_component_S = -8.2
-        torsion_component_T = 29.7
-    else:
-        coronal_component_C = None
-        sagittal_component_S = None
-        torsion_component_T = None
+    coronal_component_C = 0
+    sagittal_component_S = 0
+    torsion_component_T = 0
     values = {}
     form = OpPlanningForm()
     if request.method == 'GET':

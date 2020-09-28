@@ -10,15 +10,15 @@ COPY /requirements/docker.txt docker.txt
 RUN pip install --upgrade pip
 RUN pip install -r docker.txt
 
-# COPY app app
+COPY app app
 # COPY migrations migrations
-# COPY osteotomy.py config.py boot.sh ./
+COPY osteotomy.py config.py boot.sh ./
 
-COPY . .
+# COPY . .
 RUN chmod +x boot.sh
 
 ENV FLASK_APP osteotomy.py
-ENV FLASK_CONFIG=development
+# ENV FLASK_CONFIG=development
 
 # remove before deploy
 ENV FLASK_DEBUG=1
