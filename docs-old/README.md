@@ -56,3 +56,24 @@ of 3D bone models and virtual OP procedures.
 # ToDo  
    * Integration of the documentation into osteotomy_web.
    * A cookie confirmation info still has to be implemented.  
+   
+# Docker deploy
+ 1167  docker build -t osteotomy:latest .
+ 1168  docker run --name osteotomy -d -p 8000:5000 --rm osteotomy:latest
+
+ 1172  docker logout
+ 1173  docker login
+ 1174  docker images
+ 1175  docker push yetigo/osteotomy:version0.0.1
+ 
+ 1181  docker pull yetigo/osteotomy:version0.0.1
+ 
+ 1182  docker container ps
+ 
+ ## Problem Container zu stoppen:
+ 1183  docker container kill osteotomy
+ 1184  docker container stop osteotomy
+ 1185  sudo docker container stop osteotomy
+
+ alle drei befehle funktionieren nicht.
+   
