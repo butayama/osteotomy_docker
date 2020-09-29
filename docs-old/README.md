@@ -76,4 +76,6 @@ of 3D bone models and virtual OP procedures.
  1185  sudo docker container stop osteotomy
 
  alle drei befehle funktionieren nicht.
+das lag an der Installation von docker über Snap. Siehe meinen Kommentar in stack overflow:
+https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-stop-container/64120350#64120350
    
