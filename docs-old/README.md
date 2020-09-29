@@ -58,24 +58,25 @@ of 3D bone models and virtual OP procedures.
    * A cookie confirmation info still has to be implemented.  
    
 # Docker deploy
- 1167  docker build -t osteotomy:latest .
- 1168  docker run --name osteotomy -d -p 8000:5000 --rm osteotomy:latest
 
- 1172  docker logout
- 1173  docker login
- 1174  docker images
- 1175  docker push yetigo/osteotomy:version0.0.1
- 
- 1181  docker pull yetigo/osteotomy:version0.0.1
- 
- 1182  docker container ps
- 
- ## Problem Container zu stoppen:
- 1183  docker container kill osteotomy
- 1184  docker container stop osteotomy
- 1185  sudo docker container stop osteotomy
-
- alle drei befehle funktionieren nicht.
-das lag an der Installation von docker über Snap. Siehe meinen Kommentar in stack overflow:
+## Installation von docker
+Achtung, Fehler bei Installation von docker über Snap. Siehe meinen Kommentar in stack overflow:
 https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-stop-container/64120350#64120350
    
+
+ docker build -t yetigo/osteotomy:latest .  
+ docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest  
+ docker push yetigo/osteotomy:latest  
+
+# download docker container image 
+ docker pull yetigo/osteotomy:latest  
+ docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest   
+ 
+## display active containers 
+ docker ps  
+ docker container ls  
+ 
+ ## stop Container:
+docker container stop pum  
+
+
