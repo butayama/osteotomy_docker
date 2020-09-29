@@ -77,6 +77,13 @@ https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-s
  docker container ls  
  
  ## stop Container:
-docker container stop pum  
+docker container stop pum   
+
+## remove Container:
+docker container rm pum  
+
+## remove Image:
+docker image rm yetigo/osteotomy:latest
+
 
 
