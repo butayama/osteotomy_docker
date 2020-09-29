@@ -11,7 +11,7 @@ RUN pip install --upgrade pip
 RUN pip install -r docker.txt
 
 COPY app app
-# COPY migrations migrations
+COPY migrations migrations
 COPY osteotomy.py config.py boot.sh ./
 
 # COPY . .
