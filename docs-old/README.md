@@ -66,6 +66,8 @@ https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-s
 
  docker build -t yetigo/osteotomy:latest .  
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest  
+ 
+# upload docker container image  
  docker push yetigo/osteotomy:latest  
 
 # download docker container image 
@@ -82,8 +84,11 @@ docker container stop pum
 ## remove Container:
 docker container rm pum  
 
+## display Images:
+docker images
+
 ## remove Image:
-docker image rm yetigo/osteotomy:latest
+docker image rmi yetigo/osteotomy:latest
 
 
 
