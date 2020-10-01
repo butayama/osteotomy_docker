@@ -6,17 +6,16 @@ from flask_nav.elements import Navbar, View
 
 class NavItems:
     topbar = Navbar('',
-                    View('OSTEOTOMY', 'main.index'),
+                    View('HOME', 'main.index'),
                     View('CASE', 'main.case'),
-                    View('OP_PLANNING', 'main.op_planning'),
                     View('MEASURE', 'main.measure'),
-                    View('OP', 'main.op'),
-                    View('POST_OP', 'main.post_op'),
+                    View('CALCULATE', 'main.op_planning'),
                     View('ABOUT', 'main.about'),
 
                     )
 
     rightbar = Navbar('',
+
                       View('LOG IN', 'auth.login'),
 
                       )
@@ -29,4 +28,7 @@ class NavItems:
                       View('ABOUT_01', 'auth.about_01'),
                       View('FORUM', 'main.index'),
                       View('LOG IN', 'auth.login'),
+                      View('OP', 'main.op'),
+                      View('POST_OP', 'main.post_op'),
+
                       )
