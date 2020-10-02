@@ -1,0 +1,11 @@
+Flask
+Flask-WTF
+flask_nav
+WTForms
+pymysql
+flask_sqlalchemy
+ansimarkup
+pytest
+
+
+gunicorn

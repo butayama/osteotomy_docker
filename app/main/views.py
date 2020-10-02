@@ -1,11 +1,12 @@
+from math import degrees
+
 from flask import render_template, redirect, url_for, abort, request, \
     current_app, session
 from flask_sqlalchemy import get_debug_queries
+
 from . import main
 from .forms import OpPlanningForm
 from ..Calculation import CalculateAngles as ca
-import os
-from math import degrees
 
 
 @main.after_app_request

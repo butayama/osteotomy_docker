@@ -113,13 +113,13 @@ nav {
 
 .hero a {
     color: white;
-    text-decoration: underline;
+    text-decoration: underline;}
 
 
 .container-fluid .text-center .bottom-container p {
     margin-top: 50px;
     padding-top: 50px;
-    background-color: darkgrey;
+    background-color: darkgrey;}
 
 .bottom-container footer {
     color: #ff1a27;
