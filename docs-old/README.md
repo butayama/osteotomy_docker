@@ -63,8 +63,10 @@ of 3D bone models and virtual OP procedures.
 Achtung, Fehler bei Installation von docker über Snap. Siehe meinen Kommentar in stack overflow:
 https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-stop-container/64120350#64120350
    
-
+# after changes: create a new image
  docker build -t yetigo/osteotomy:latest .  
+ 
+# test the new image locally   
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest  
  
 # upload docker container image  
