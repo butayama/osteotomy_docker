@@ -2,7 +2,7 @@ from flask import render_template, redirect, url_for, abort, request, \
     current_app, session
 from flask_sqlalchemy import get_debug_queries
 from . import main
-from .forms import OpPlanningForm
+from .forms import CalculateForm
 from ..Calculation import CalculateAngles as ca
 import os
 from math import degrees
@@ -47,7 +47,7 @@ def op_planning():
     sagittal_component_S = 0
     torsion_component_T = 0
     values = {}
-    form = OpPlanningForm()
+    form = CalculateForm()
     if request.method == 'GET':
         form.coronal_component_C.data = coronal_component_C
         form.sagittal_component_S.data = sagittal_component_S
@@ -74,7 +74,7 @@ def op_planning():
         }
         return redirect(url_for('.op_planning_results', values=session['values']))
 
-    return render_template('op_planning.html', form=form, imp0rt = importlib.import_module)
+    return render_template('calculate.html', form=form, imp0rt = importlib.import_module)
 
 
 @main.route('/op_planning_results', methods=['GET', 'POST'])
@@ -88,9 +88,9 @@ def measure():
     return render_template('measure.html', imp0rt = importlib.import_module)
 
 
-@main.route('/op')
+@main.route('/sign')
 def op():
-    return render_template('op.html', imp0rt = importlib.import_module)
+    return render_template('sign_rules.html', imp0rt = importlib.import_module)
 
 
 @main.route('/post_op')
