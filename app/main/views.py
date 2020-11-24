@@ -90,7 +90,7 @@ def measure():
 
 @main.route('/sign')
 def op():
-    return render_template('sign_rules.html', imp0rt = importlib.import_module)
+    return render_template('sign_rules.html', imp0rt = importlib.import_module, angle_signs="static/img/angle_signs.png")
 
 
 @main.route('/post_op')
