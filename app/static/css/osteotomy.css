@@ -18,9 +18,8 @@
     background: white;
 }
 
-.fluid-middle .hero .inside {
-    padding-left: 50px;
-    font-size: 100px;
+.inside {
+    padding-left: 5%;
 }
 
 .content_main .row{
@@ -39,6 +38,12 @@
     background: #cccccc;
 }
 
+.under_construction {
+    font-size: 20px;
+    padding: 10px;
+    text-align: center;
+    background: #cb81ff;
+}
 .hero {
     font-size: 18px;
 }
