@@ -1,13 +1,6 @@
 FROM python:3.8-slim-buster
 
 RUN adduser --debug --disabled-password osteotomy
-# --debug
-#           ausführliche Fehlermeldungen ausgeben; nützlich, wenn Probleme mit  adduser  gelöst
-#           werden sollen
-# --disabled-password
-#           Bei der Einrichtung des Nutzers wird nicht nach dem Passwort gefragt.
-#           Der Nutzer kann sich nicht am System anmelden, bis ein Passwort mit Hilfe des Befehls passwd gesetzt wird.
-#           Dies ist dann z.B. sinnvoll, wenn man als Systemadministrator das Passwort des Nutzers nicht kennen möchte.
 
 WORKDIR /home/osteotomy
 
