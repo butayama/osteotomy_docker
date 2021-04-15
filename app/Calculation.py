@@ -86,7 +86,7 @@ class CalculateAngles:
     
         {'azimuth of vektor k (13) ':>35}{chr(int("3A6", 16))}{'= ':>3}{degrees(a_azi):8.1f} degrees ({a_azi:8.4f} rad )
     
-        {'angle of rotation (12) ':>35}{chr(int("398", 16))}{'= ':>3}{degrees(a_ele):8.1f} degrees ({a_ele:8.4f} rad )
+        {'elevation of vector k (12) ':>35}{chr(int("398", 16))}{'= ':>3}{degrees(a_ele):8.1f} degrees ({a_ele:8.4f} rad )
     
         {'angle of rotation around k (14) ':>35}{chr(int("3B2", 16))}{'= ':>3}{degrees(a_aor):8.1f} degrees ({a_aor:8.4f} rad )
     
@@ -153,10 +153,10 @@ class CalculateAngles:
                 orientation angle (16)
                 {chr(945)} (a_oa)= {degrees(a_oa):6.1f} degrees ({a_oa:7.4f} rad )
     
-                azimuth of vektor k (angle between z1 axis and the axis of rotation of vector k ) (13)
+                azimuth of vector k: angle between x1 axis and the projection of k onto the x1-y1 plane (13)
                 {chr(int("3A6", 16))} (a_azi)= {degrees(a_azi):6.1f} degrees ({a_azi:7.4f} rad )
     
-                angle of rotation between x1 axis and the projection of k onto the x1-y1 plane (12)
+                elevation of vector k: angle between z1 axis and the axis of rotation k (12)
                 {chr(int("398", 16))} (a_ele)= {degrees(a_ele):6.1f} degrees({a_ele:7.4f} rad )
     
                 angle of rotation around k (14)
