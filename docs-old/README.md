@@ -19,6 +19,11 @@ The application is deployed with Gunicorn, a Python WSGI HTTP Server for UNIX.
 
 Password protected test versions of the [Osteotomy](http://Osteotomy.de) and the [Documentation](http://81.169.231.230)
 website are already online.
+Locally the *documentation* is stored as git Project on 
+hp-P8: E:\GitHub\Osteotomy-OP-planning-with-Blender  
+
+Archived with FreeFileSync on Seagate_4T at:  
+F:\Osteotomy-OP-planning-with-Blender
 
 # The web framework Flask
 [Project Homepage](https://flask.palletsprojects.com/en/1.1.x/).
