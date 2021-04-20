@@ -1,0 +1,14 @@
+{% extends "shared/_layout.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{%  block title %}Calculate{% endblock %}
+{% block page_content_middle %}
+
+    <div class="page-header">
+        <h1>Input angles</h1>
+        <li class="active"><a href="/sign">Sign Rules</a></li>
+        <h4>Use point (.) as decimal separator</h4>
+    </div>
+    <div class="col-md-4">
+        {{ wtf.quick_form(form) }}
+    </div>
+{% endblock %}

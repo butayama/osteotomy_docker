@@ -21,11 +21,11 @@
         <h2>orientation angle (16)</h2>
             <li class="collection-item">
                 <span class="bold">{{ chr(945) }}</span> = {{ '{0:6.1f} degrees ({1:7.4f} rad)'.format(degrees(values['a_oa']), values['a_oa']) }}</li>
-        <h2>azimuth of vektor k (angle between z1 axis and the axis of rotation of vector k ) (13)</h2>
+        <h2>azimuth of vector k: angle between x1 axis and the projection of k onto the x1-y1 plane (13)</h2>
             <li class="collection-item">
                 <span class="bold">{{ chr(int("3A6", 16)) }}</span> = {{ '{0:6.1f} degrees ({1:7.4f} rad)'.format(degrees(values['a_azi']), values['a_azi']) }}</li>
 
-        <h2>rotation between x1 axis and the projection of k onto the x1-y1 plane (12)</h2>
+        <h2>elevation of vector k: angle between z1 axis and the axis of rotation k (12)</h2>
             <li class="collection-item">
                 <span class="bold">{{ chr(int("398", 16)) }}</span> = {{ '{0:6.1f} degrees ({1:7.4f} rad)'.format(degrees(values['a_ele']), values['a_ele']) }}</li>
 

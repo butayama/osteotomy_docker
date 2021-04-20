@@ -21,7 +21,7 @@ ENV FLASK_APP osteotomy.py
 # ENV FLASK_CONFIG=development
 
 # remove before deploy
-ENV FLASK_DEBUG=1
+# ENV FLASK_DEBUG=1
 
 RUN chown -R osteotomy:osteotomy ./
 USER osteotomy

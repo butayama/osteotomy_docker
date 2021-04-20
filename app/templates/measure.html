@@ -1,20 +1,11 @@
 {% extends "shared/_layout.html" %}
 {% import "bootstrap/wtf.html" as wtf %}
-{%  block title %}Case{% endblock %}
+{%  block title %}Measure{% endblock %}
 
 {% block page_content_middle %}
     <div class="hero">
 <h1>OP Planning with <strong>Blender</strong></h1>
 
-{#<ul>
-<li><a href="#OP-Planning steps">OP-Planning steps</a></li>
-<li><a href="#Sign definitions">Sign definitions</a></li>
-<li><a href="#Measure the input angles">Measure the input angles</a></li>
-<li><a href="#References">References</a></li>
-</ul>#}
-
-{#<h1>Getting Started</h1>
-<p>Virtual cut according to a Tibia malunion example from <a href="#ref-1">Sangeorzan (Trauma) 1989</a> and <a href="#ref-2">Sangeorzan (Biomech) 1989</a>  </p>#}
 <h2>Install Blender</h2>
 <p>Follow the instructions on <a href="https://www.blender.org/download/">blender.org</a>  </p>
 <h2>First steps with blender</h2>
@@ -28,58 +19,107 @@
 <li><a href="https://blender.stackexchange.com/">Blender Stack Exchange</a>  </li>
 </ul>
 <br>
-{#<br>
-<a id="OP-Planning steps">OP-Planning steps</a>
-<p>For a new case, the OP-Planning comprises the following steps:<br>
-<em> <a href="#Insert-sane-and-deformed-bone-in-the-measure-and-cut-template">Insert sane and deformed bone in the measure and cut template</a><br>
-</em> <a href="#Measure-deformed-bone-angles">Measure deformed bone angles</a><br>
-<em> <a href="#Calculation-of-the-cutting-plane">Calculation of the cutting plane</a><br>
-</em> <a href="#Cut">Virtual cut</a><br>
-<em> <a href="#Rotation">Virtual rotation</a><br>
-</em> <a href="#Kirschner-Wire-planning">Planning of the placement of K-Wires</a><br>
-* <a href="#Planning-of-a-cutting-guide">Planning of a cutting guide</a>  </p>
-<br>
-<br>
 
-<a id="Sign definitions">Sign definitions</a>
+        <h1>OP-Planning steps</h1>
+<p>For a new case, the OP-Planning comprises the following steps:<br />
+<div class=outside">
+    <div class="inside">
+    <ul class="list-group" >
+        <li> <a href="#Insert sane and deformed bone in the measure and cut template"> Insert sane and deformed bone in the measure and cut template </a></li>
+        <li> <a href="#Measure deformed bone angles"> Measure deformed bone angles</a></li>
+        <li> Calculation of the cutting plane</li>
+        <li> Virtual cut</li>
+        <li> Virtual rotation</li>
+        <li> Planning of the placement of K-Wires</li>
+        <li> Planning of a cutting guide</li>
+    </ul>
+    </div>
+</div>
 
-<p>the signs of the angles could be determined with the following table:<br>
-<img alt="angle_signs.png" src="{{url_for('static', filename='images/sign_definitions/angle_signs.png')}}" width="500" height="100">  </p>
-<p>In the following sign definition examples, the green bone represents the sane tibia (right side of the body). The white left side of the body tibia is bent according to the example of sangeorzan:<br>
- * Coronal plane: Varus (positive sign for C = 13 degrees)<br>
- * Sagittal plane: Extension (negative sign for S = -19 degrees)<br>
- * Transverse plane: Internal rotation (positive sign for T = 10 degrees)     </p>
-<h3>Coronal Front sign definitions</h3>
-<p><img alt="coronal_front0001.png" src="{{url_for('static', filename='images/sign_definitions/coronal_front0001.png')}}" width="1000" height="500">  </p>
-<h3>Sagittal Front sign definitions</h3>
-<p><img alt="sagittal_front0001.png" src="{{url_for('static', filename='images/sign_definitions/sagittal_front0001.png')}}" width="1000" height="500">  </p>
-<h3>Transverse sign definitions</h3>
-<p><img alt="transverse_top_and_bottom_0001.png" src="{{url_for('static', filename='images/sign_definitions/transverse_top_and_bottom_0001.png')}}" width="1000" height="1000">  </p>
-<p>The application of the calculation results must follow these guidelines:  </p>
-<h3>Sign rule for angle Phi</h3>
+
+<h1><a name="Insert sane and deformed bone in the measure and cut template"></a>Insert sane and deformed bone in the measure and cut template</h1>
+<p>Load and open the measure and cut template from:<br />
+<a href="../static/images/measure_and_cut/Measure_and_Cut_Template_a00.blend">Measure_and_Cut_Template_a00.blend</a>  </p>
+<p><img alt="measure_and_cut_a00.png" src="../static/images/measure_and_cut/measure_and_cut_a00.png" width="100%"></p>
+<p>In the outliner:  </p>
 <ul>
-<li>Start from the coronal plane (0°). From there the positive rotation is defined in <strong>lateral</strong> direction <a href="#ref-3">Sean E. Nork, webinar 23:20</a>.</li>
+<li>Select the <code>bone repository</code> Collection  </li>
 </ul>
-<p>As a consequence of this rule, the sign of Phi and Beta of the calculation result is correct for the left side of the body bones and changes for the right side of the body bones.</p>
-<blockquote>
-<p>Left side of the body bone:  </p>
-<blockquote>
-<p>For the rotation of the cutting plane, the sign rule for angle Phi (Rotation Z) and Beta (Local Rotation Z around Vector k) results in a positive rotation around the Z-axis in the plane of no deformity coordinate system (C1) which is chosen according to <a href="#ref-2">Sangeorzan (Biomech) 1989</a> Fig. 3. </p>
-</blockquote>
-<p>Right side of the body bone: </p>
-<blockquote>
-<p>For the rotation of the cutting plane, the sign rule for angle Phi and Beta results in a negative rotation around the Z-axis in the plane of no deformity coordinate system (C1) which is chosen according to <a href="#ref-2">Sangeorzan (Biomech) 1989</a> Fig. 3.<br>
-Therefore the calculation result values for angle Phi and Beta must be entered with inverse sign into the blender templates for right side of the body bones.
-See <a href="#Sangeorzan-Example-for-the-right-side-of-the-body">Sangeorzan Example for the right side of the body</a></p>
-</blockquote>
-</blockquote>
-<p>The Theta rotation axis is the Y-axis of the C1 coordinate system which has been rotated laterally around Phi. The sign of the Theta calculation result correlates with the positive rotation direction of Y in the laterally rotated C1. Therefore the sign is independent from the side of the body and the Theta sign can be entered unaltered in the blender Osteotomy templates (Rotation Y).</p>
-<p>Rotating the distal segment by Beta around vector k compensates bone deflection and torsion. <a href="#ref-4">Dobbe, Med Biol Eng Comput (2011), Fig 2</a>.   </p>
-<br>
-<br>
-
-<a id="Measure the input angles">Measure the input angles</a>
-
+<p>In the main menue select  </p>
+<ul>
+<li><code>File -&gt; Append...</code> Choose a library.blend file with the bones  </li>
+<li>Choose the collection where the bones are stored  </li>
+<li>append the collection  </li>
+</ul>
+<p>You will find the new bone collection in the bone repository collection.</p>
+<h1><a name="Measure deformed bone angles"></a> Measure deformed bone angles</a></h1>
+<p>Load and open the measure angles example file:  </p>
+<p><a href="../static/images/measure_angles/Sangeorzan_a1.blend">Sangeorzan_a1.blend</a>  </p>
+<p>In the Outliner  </p>
+<p>Only the <code>Light</code> and <code>bone</code> repository collections are activated</p>
+<p><img alt="measure_angles_proximal_match_Sangeorzan_a01.png" src="../static/images/measure_angles/measure_angles_proximal_match_Sangeorzan_a01.png" width="100%"></p>
+<h2>Match the distal end of the deformed bone with the distal end of the sane bone</h2>
+<p>The proximal parts of the bones match in the example. The coronal plane already matches the Blender Right Orthographic view. The plane of deformity empty has to be moved upwards 19.9862 units along the Z-Axis into the center of deformity:<br />
+During OP Planning you can match the proximal parts with the same commands as described in <a href="#Match the distal ends of the bones">Match the distal ends of the bones</a>  </p>
+<h3>Apply bone transformations</h3>
+<p>Be sure to apply the transformation for the sane and deformed bones repectively with <code>Strg+A -&gt; Apply all transforms</code> after choosing each bone with 'RMB'. The Rotation, Location values are set to 0 and the Scale Values are set to 0. With 'Alt+G' (Translation), 'Alt+R' (Rotation) you can always restore the stored '0' position. This reset will be necessary for the angle measurement.</p>
+<h3>Transformation orientation and Pivot Point setting</h3>
+<ul>
+<li>Use the Transformation orientation and Pivot Point settings to easily match the bones. For rotation transforms it might be good to place the cursor in the origin of the center of deformity and use <code>Global</code> Transformation orientation and <code>3D Cursor</code> as Pivot Point.  </li>
+</ul>
+<p><img alt="Transformation_orientation_and_Pivot_Point_setting.png" src="../static/images/measure_angles/Transformation_orientation_and_Pivot_Point_setting.png" width="100%"></p>
+<h2> <a name="Match the distal ends of the bones"></a>Match the distal ends of the bones</h2>
+<ul>
+<li>Select the deformed bone  </li>
+<li>Use the Shortcuts <code>G+X</code>, <code>Y</code>, <code>Z</code> to translate and <code>R+X</code>, <code>Y</code>, <code>Z</code> to rotate the bone.  </li>
+<li>Change between the views with the Numeric Keys of the Numpad: (If you don't have a numpad you can emulate one in <code>Edit -&gt; Preferences -&gt; Input -&gt; Emulate Numpad</code>)  </li>
+</ul>
+<p><code>1</code>: Sagittal front<br />
+<code>Strg+1</code> Sagittal back<br />
+<code>3</code>: Coronal front<br />
+<code>Strg+3</code> Coronal back<br />
+<code>7</code>: Transverse Top<br />
+<code>Strg+7</code>: Transverse Bottom  </p>
+<p>You can also enter the Values in the Item Menue. Enter the Transform Location: X, Y, Z and Rotation X, Y, Z of the screencopy:</p>
+<p><img alt="measure_angles_distal_match_Sangeorzan_transform_values_a02.png" src="../static/images/measure_angles/measure_angles_distal_match_Sangeorzan_transform_values_a02.png" width="100%"></p>
+<p><img alt="measure_angles_distal_match_Sangeorzan_a02.png" src="../static/images/measure_angles/measure_angles_distal_match_Sangeorzan_a02.png" width="100%"></p>
+<p>Or download the file:</p>
+<p><a href="../static/images/measure_angles/Sangeorzan_a2.blend">Sangeorzan_a2.blend</a>   </p>
+<h2>Parent the Orientation Point Empties</h2>
+<p>In the Outliner:  </p>
+<ul>
+<li>Activate the angle measurement Collection  </li>
+<li>Select the empty "Orientation point bottom deformed" </li>
+</ul>
+<p>With the Cursor in the 3D View: </p>
+<ul>
+<li><code>G+Z</code> Move the empty along the Z axis  until the origin touches the distal bone surface </li>
+<li>Be sure, that the local coordinates of <code>Orientation point bottom deformed</code> and <code>Orientation point bottom sane mirrored</code> match with the directions of the global coordinate system.</li>
+<li>Select <code>Orientation point bottom sane mirrored</code> with <code>RMB</code> and then <code>Orientation point bottom deformed</code> with <code>Shift+RMB</code>. With <code>Strg+C -&gt; copy location</code> and <code>Strg+C -&gt; copy rotation</code> you can set the location of <code>Orientation point bottom sane mirrored</code> to the position of <code>Orientation point bottom deformed</code>  </li>
+<li>Select <code>Orientation point bottom deformed</code> and with <code>Shift+RMB</code> add  <code>deformed left</code> to the selection  </li>
+</ul>
+<p>Parent the empty with the deformed bone  </p>
+<ul>
+<li><code>Strg+P</code> -&gt; Object (Keep Transform)  </li>
+</ul>
+<h2>Match the proximal part of the bones with Clear Location and Rotation</h2>
+<p>In the outliner:  </p>
+<ul>
+<li>With <code>LMB</code> select <code>deformed left</code>.  </li>
+<li><strong>Important</strong>: The empty "Orientation point bottom deformed" is now <strong>deselected</strong>.  </li>
+</ul>
+<p>With the Cursor in the 3D View:<br />
+* Type <code>Alt+G</code> and <code>Alt+R</code> to reset the Transformation to match the proximal part of the bones. </p>
+<p>The empty <code>Orientation point bottom deformed</code> moves with the distal part of the deformed bone and can be used for the exact angle measurement.  </p>
+<h3>Define the position of the <code>Plane of deformity</code></h3>
+<p>The horizontal position of the plane of deformity (Global Z Coordinate) could be determined visually at the pont of maximum bend of the deformed bone.  <br />
+In the outliner<br />
+* Select <code>Plane of deformity</code> mesh
+* Enter 19.9862 in <code>Item -&gt; Location -&gt; Z</code></p>
+<p><img alt="measure_angles_distal_orientation_point_moved_a03.png" src="../static/images/measure_angles/measure_angles_distal_orientation_point_moved_a03.png" width="100%"></p>
+<p>this situation can be downloaded from:</p>
+<p><a href="../static/images/measure_angles/Sangeorzan_a3.blend">Sangeorzan_a3.blend</a>  </p>
+<h2>Measure the input angles</h2>
 <p>The Blender <a href="https://docs.blender.org/manual/en/2.83/addons/3d_view/measureit.html">MeasureIt Add-on</a> must be activated for the next steps. </p>
 <h3>Measure the Coronal Angle C</h3>
 <ul>
@@ -91,11 +131,11 @@ See <a href="#Sangeorzan-Example-for-the-right-side-of-the-body">Sangeorzan Exam
 <li><code>G+Mouse</code> Move the vertice so that the connection line between the vertice and the upper edge of the triangle crosses the origin of the <code>Orientation point bottom deformed</code> empty.  By scrolling the Middle Mouse Wheel you can enlarge the empty to get an exact match.  </li>
 <li>with <code>Shift+RMB</code> additionally select the upper triangle vertice and the left triangle vertice.</li>
 <li>In the view menu open MeasureIt Tools Panel and choose the <code>Angle</code> button.  </li>
-<li>In the <code>MeasureIt Tools</code> Panel choose the <code>Show</code> button.<br>
+<li>In the <code>MeasureIt Tools</code> Panel choose the <code>Show</code> button.<br />
 The angle of the triangle is shown in the 3D-View. It should be about 13° and is used as input value for the calculation of the Osteotomy angles. You might want to edit the color, size and position of the measurement in <code>Item -&gt; MeasureIt Tools -&gt; Items -&gt; Advanced Options</code>. To see this option, the triangle mesh has to be selected. </li>
 <li>Choose the text <code>Coronal angle in degrees varus or valgus</code> with the <code>RMB</code> in the 3D-view. Change into <code>Edit Mode</code> with <code>Tab</code>. Edit the text and leave <code>Edit Mode</code> with <code>Tab</code>.</li>
 </ul>
-<p><img alt="Measure_angles_coronal.png" src="{{url_for('static', filename='images/measure_angles/Measure_angles_coronal.png')}}" width="1000" height="550">    </p>
+<p><img alt="Measure_angles_coronal.png" src="../static/images/measure_angles/Measure_angles_coronal.png" width="100%"></p>
 <h3>Measure the Sagittal Angle S</h3>
 <ul>
 <li><code>Numpad+Strg+1</code> </li>
@@ -111,15 +151,15 @@ The angle of the triangle is shown in the 3D-View. It should be about 13° and i
 <li>In the view menu open MeasureIt Tools Panel and choose the <code>Angle</code> button.  </li>
 <li>In the <code>MeasureIt Tools</code> Panel choose the <code>Show</code> button. )  </li>
 </ul>
-<p>The angle of the triangle is shown in the 3D-View. It should be about 19° and is used as input value for the calculation of the Osteotomy angles.<br>
+<p>The angle of the triangle is shown in the 3D-View. It should be about 19° and is used as input value for the calculation of the Osteotomy angles.<br />
 * Choose the text <code>Sagittal angle in degrees - flexion or extension</code> with the <code>RMB</code> in the 3D-view. Change into <code>Edit Mode</code> with <code>Tab</code>. Edit the text and leave <code>Edit Mode</code> with <code>Tab</code>.  </p>
-<p><img alt="Measure_angles_sagittal.png" src="{{url_for('static', filename='images/measure_angles/Measure_angles_sagittal.png')}}"width="1000" height="550">   </p>
+<p><img alt="Measure_angles_sagittal.png" src="../static/images/measure_angles/Measure_angles_sagittal.png" width="100%"></p>
 <h3>Measure the Torsion Angle T</h3>
 <ul>
 <li><code>Numpad+Strg+7</code> </li>
 <li>Hide the Mesh <code>Sagittal angle in degrees</code> with <code>h</code>.   </li>
 <li>Select the Mesh <code>torsion angle in degrees</code>  </li>
-<li>In <code>Properties -&gt; Object Constraints Properties</code> delete the <code>Copy Location</code> Constraint by clicking the &lsquo;X&rsquo; with <code>LMB</code></li>
+<li>In <code>Properties -&gt; Object Constraints Properties</code> delete the <code>Copy Location</code> Constraint by clicking the 'X' with <code>LMB</code></li>
 <li><code>Strg+M+x + Return</code> mirror the triangle along the X-axis.</li>
 <li><code>G+y</code> move the triangle along the Y-axis until the origin of the triangle is placed in the extension of the z-axis of the <code>Orientation point bottom deformed</code>.   </li>
 <li>Change in Edit Mode with <code>Tab</code>  </li>
@@ -133,27 +173,24 @@ The angle of the triangle is shown in the 3D-View. It should be about 13° and i
 <li>In the view menu open <code>MeasureIt Tools</code> Panel and choose the <code>Angle</code> button.  </li>
 <li>In the <code>MeasureIt Tools</code> Panel choose the <code>Show</code> button. )  </li>
 </ul>
-<p>The angle of the triangle is shown in the 3D-View. It should be about 10° and is used as input value for the calculation of the Osteotomy angles.<br>
+<p>The angle of the triangle is shown in the 3D-View. It should be about 10° and is used as input value for the calculation of the Osteotomy angles.<br />
 * Choose the text <code>torsion anlge in degrees external or internal rotation</code> with the <code>RMB</code> in the 3D-view. Change into <code>Edit Mode</code> with <code>Tab</code>. Edit the text and leave <code>Edit Mode</code> with <code>Tab</code>.  </p>
-<p><img alt="Measure_angles_transverse.png" src="{{url_for('static', filename='images/measure_angles/Measure_angles_transverse.png')}}" width="1000" height="550">     </p>
-<p><img alt="Measure_angles_overview.png" src="{{url_for('static', filename='images/measure_angles/Measure_angles_overview.png')}}" width="1000" height="550">    </p>
-<p>All necessary input angles for the calculation are now now determined. The following steps are described in  <a href="#Calculation-of-the-cutting-plane">Calculation of the cutting plane</a> and <a href="#Cut-and-Rotation">Cut and Rotation</a></p>
-<br>
-<br>
+<p><img alt="Measure_angles_transverse.png" src="../static/images/measure_angles/Measure_angles_transverse.png" width="100%"></p>
+<p><img alt="Measure_angles_overview.png" src="../static/images/measure_angles/Measure_angles_overview.png" width="100%"></p>
+<p>All necessary input angles for the calculation are now now determined. </p>
 
-<a id="References">References</a>#}
-
+{# <h1>References</h1>
 <h2>ref 1</h2>
-<p>Sangeorzan BJ, Sangeorzan BP, Hansen ST, et al: Mathematically Directed Single-Cut Osteotomy for Correction of Tibial Malunion. J Orthop Trauma 3:267-275, 1989.</p>
+<p><a name="ref 1"></a>Sangeorzan BJ, Sangeorzan BP, Hansen ST, et al: Mathematically Directed Single-Cut Osteotomy for Correction of Tibial Malunion. J Orthop Trauma 3:267-275, 1989.</p>
 <h2>ref 2</h2>
-<p>Sangeorzan BJ, Judd RP, Sangeorzan BJ: Mathematical Analysis of Single-cut Osteotomy of Complex Long Bone Deformity. J Biomech 22:1271-1278, 1989. </p>
+<p><a name="ref 2"></a>Sangeorzan BJ, Judd RP, Sangeorzan BJ: Mathematical Analysis of Single-cut Osteotomy of Complex Long Bone Deformity. J Biomech 22:1271-1278, 1989. </p>
 <h2>ref 3</h2>
-<p>Sean E. Nork, tibial Malunions, Oblique Osteotomy for Corrections of Diaphyseal Multiplanar Deformities, Aotrauma North America Webinar, McGill Division of Orthopaedic Surgery, Shriners Hospitals for Children, 2020</p>
+<p><a name="ref 3"></a>not yet used</p>
 <h2>ref 4</h2>
-<p>Dobbe JG, Pre KJ, Kloen P, et al: Computer-assisted and patient-specific 3-D planning and evaluation of a single-cut rotational Osteotomy for complex long-bone deformities. Med Biol Eng Comput 49:1363-1370, 2011.</p>
+<p><a name="ref 4"></a>Dobbe JG, Pre KJ, Kloen P, et al: Computer-assisted and patient-specific 3-D planning and evaluation of a single-cut rotational Osteotomy for complex long-bone deformities. Med Biol Eng Comput 49:1363-1370, 2011.</p>
 <h2>ref 5</h2>
-<p>J. G. G. Dobbe, K. J. du Pre´, L. Blankevoort, G. J. Streekstra, P. Kloen: Computer-assisted oblique single-cut rotation osteotomy to reduce a multidirectional tibia deformity: case report Strat Traum Limb Recon (2017) 12:115-120</p>
-
+<p><a name="ref 5"></a>J. G. G. Dobbe, K. J. du PreÂ´, L. Blankevoort, G. J. Streekstra, P. Kloen: Computer-assisted oblique single-cut rotation osteotomy to reduce a multidirectional tibia deformity: case report Strat Traum Limb Recon (2017) 12:115-120</p>
+ #}
     </div>
 
 {% endblock %}

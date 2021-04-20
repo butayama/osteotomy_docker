@@ -1,5 +1,5 @@
 {% extends "bootstrap/base.html" %}
-
+{% set datetime = imp0rt( 'datetime' ) %}
 {%  block title %}Osteotomy{% endblock %}
 
     <!-- Begin Cookie Consent plugin by Silktide - http://silktide.com/cookieconsent -->
@@ -13,7 +13,7 @@
 {{ super() }}
     <link rel="shortcut icon" href="{{ url_for('static', filename='pumuckl_01.ico') }}" type="image/x-icon">
     <link rel="icon" href="{{ url_for('static', filename='pumuckl_01.ico') }}" type="image/x-icon">
-    <link rel="stylesheet" href="static/css/site.css" />
+    <link rel="stylesheet" href="../../static/css/osteotomy.css" />
     <div class="container-fluid fluid-top">
         <img src="{{ url_for('static', filename='img/Lebensfreude_logo_02_sw.png') }}"
                      class="img-fluid" alt="Logo">
@@ -45,9 +45,11 @@
 
 {% block scripts %}
 {{ super() }}
+
     <div class="container-fluid fluid-bottom">
 {#        </footer>#}
-            <p class="copyright">Copyright (C) 2020 | Uwe Schweinsberg | butayama+osteotomy@gmail.com</p>
+            <p class="copyright">Copyright (C) 2020 - {{ datetime.date.today().year }} | Lorenz Peter Schweinsberg DVM |
+                lorenz.schweinsberg@fu–berlin.de </p>
             <p><a href="https://www.gnu.org/licenses/gpl-3.0.html" target="_blank" rel="nofollow">
                 GNU GENERAL PUBLIC LICENSE Version 3</a></p>
             <p class="small">This program comes with ABSOLUTELY NO WARRANTY;

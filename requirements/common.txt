@@ -16,6 +16,7 @@ Flask-Bootstrap
 Flask-HTTPAuth
 Flask-Login
 Flask-Mail
+Flask-Markdown
 Flask-Migrate
 Flask-Moment
 flask-nav

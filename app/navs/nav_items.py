@@ -10,6 +10,7 @@ class NavItems:
                     View('CASE', 'main.case'),
                     View('MEASURE', 'main.measure'),
                     View('CALCULATE', 'main.op_planning'),
+                    View('SIGN-RULES', 'main.op'),
                     View('ABOUT', 'main.about'),
 
                     )
@@ -28,7 +29,6 @@ class NavItems:
                       View('ABOUT_01', 'auth.about_01'),
                       View('FORUM', 'main.index'),
                       View('LOG IN', 'auth.login'),
-                      View('OP', 'main.op'),
                       View('POST_OP', 'main.post_op'),
 
                       )

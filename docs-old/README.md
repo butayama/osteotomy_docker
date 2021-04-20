@@ -19,6 +19,11 @@ The application is deployed with Gunicorn, a Python WSGI HTTP Server for UNIX.
 
 Password protected test versions of the [Osteotomy](http://Osteotomy.de) and the [Documentation](http://81.169.231.230)
 website are already online.
+Locally the *documentation* is stored as git Project on 
+hp-P8: E:\GitHub\Osteotomy-OP-planning-with-Blender  
+
+Archived with FreeFileSync on Seagate_4T at:  
+F:\Osteotomy-OP-planning-with-Blender
 
 # The web framework Flask
 [Project Homepage](https://flask.palletsprojects.com/en/1.1.x/).
@@ -63,8 +68,10 @@ of 3D bone models and virtual OP procedures.
 Achtung, Fehler bei Installation von docker über Snap. Siehe meinen Kommentar in stack overflow:
 https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-stop-container/64120350#64120350
    
-
+# after changes: create a new image
  docker build -t yetigo/osteotomy:latest .  
+ 
+# test the new image locally   
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest  
  
 # upload docker container image  

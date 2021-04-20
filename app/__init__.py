@@ -3,6 +3,7 @@ from flask_bootstrap import Bootstrap
 from flask_moment import Moment
 from flask_nav import Nav
 from flask_pagedown import PageDown
+from flaskext.markdown import Markdown
 from config import config
 
 bootstrap = Bootstrap()
@@ -20,6 +21,7 @@ def create_app(config_name):
     moment.init_app(app)
     pagedown.init_app(app)
     nav.init_app(app)
+    Markdown(app, extensions=['fenced_code'])
 
     if app.config['SSL_REDIRECT']:
         from flask_talisman import Talisman
