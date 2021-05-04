@@ -8,6 +8,7 @@ from flask_login import LoginManager
 from flask_pagedown import PageDown
 from flaskext.markdown import Markdown
 from config import config
+from flask_consent import Consent
 
 bootstrap = Bootstrap()
 mail = Mail()
