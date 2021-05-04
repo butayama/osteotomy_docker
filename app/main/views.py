@@ -33,8 +33,8 @@ def server_shutdown():
 
 @main.route('/')
 def index():
-    # return render_template('/sign', imp0rt = importlib.import_module)
-    return render_template('index.html', imp0rt = importlib.import_module)
+    return render_template('/sign', imp0rt = importlib.import_module)
+    # return render_template('index.html', imp0rt = importlib.import_module)
 
 
 @main.route('/case')
