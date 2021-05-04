@@ -33,12 +33,13 @@ def server_shutdown():
 
 @main.route('/')
 def index():
-    return render_template('index.html', imp0rt = importlib.import_module)
+    return render_template('sign_rules.html', imp0rt = importlib.import_module, angle_signs="static/img/angle_signs.png")
+    # return render_template('index.html', imp0rt = importlib.import_module)
 
 
-@main.route('/case')
-def case():
-    return render_template('case.html', imp0rt = importlib.import_module)
+# @main.route('/case')
+# def case():
+#     return render_template('case.html', imp0rt = importlib.import_module)
 
 
 @main.route('/op_planning', methods=['GET', 'POST'])
@@ -83,9 +84,9 @@ def op_planning_results():
                            int=int, imp0rt = importlib.import_module)
 
 
-@main.route('/measure')
-def measure():
-    return render_template('measure.html', imp0rt = importlib.import_module)
+# @main.route('/measure')
+# def measure():
+#     return render_template('measure.html', imp0rt = importlib.import_module)
 
 
 @main.route('/sign')
@@ -93,11 +94,11 @@ def op():
     return render_template('sign_rules.html', imp0rt = importlib.import_module, angle_signs="static/img/angle_signs.png")
 
 
-@main.route('/post_op')
-def post_op():
-    return render_template('post_op.html', imp0rt = importlib.import_module)
-
-
-@main.route('/about')
-def about():
-    return render_template('about.html', imp0rt = importlib.import_module)
+# @main.route('/post_op')
+# def post_op():
+#     return render_template('post_op.html', imp0rt = importlib.import_module)
+#
+#
+# @main.route('/about')
+# def about():
+#     return render_template('about.html', imp0rt = importlib.import_module)
