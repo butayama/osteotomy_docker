@@ -76,11 +76,16 @@ https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-s
  
 # upload docker container image  
  docker push yetigo/osteotomy:latest  
+ docker push yetigo/osteotomy_ssl:latest 
 
 # download docker container image 
  docker pull yetigo/osteotomy:latest  
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest   
  
+# download docker SSL container image 
+ docker pull yetigo/osteotomy_ssl:latest    
+ docker run --restart=always -v //etc/ssl/certs:/etc/ssl/certs -v //etc/ssl/private:/etc/ssl/private -d --name pum yetigo/osteotomy_ssl:latest 
+
 ## display active containers 
  docker ps  
  docker container ls  
