@@ -12,7 +12,7 @@ RUN pip install -r docker.txt
 
 COPY app app
 COPY migrations migrations
-COPY osteotomy.py config.py boot.sh ./
+COPY osteotomy.py config.py gunicorn.conf.py boot.sh ./
 
 # COPY . .
 RUN chmod +x boot.sh
