@@ -75,6 +75,10 @@ https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-s
 # test the new image locally   
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest  
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy_ssl:latest  
+
+# download docker SSL container image and run it locally
+ docker pull yetigo/osteotomy_ssl:latest    
+ docker run -v E:\Strato_osteotomy.eu_Zertifikat\osteotomy_tool\:/ssl/private -d --name pum yetigo/osteotomy_ssl:latest 
  
 # upload docker container image  
  docker push yetigo/osteotomy:latest  
@@ -84,29 +88,37 @@ https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-s
  docker pull yetigo/osteotomy:latest  
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest   
 
-# download docker SSL container image and run it locally
- docker pull yetigo/osteotomy_ssl:latest    
- docker run -v E:\Strato_osteotomy.eu_Zertifikat\osteotomy_tool\:/ssl/private -d --name pum yetigo/osteotomy_ssl:latest 
  
 # deploy on server: download docker SSL container image 
  docker pull yetigo/osteotomy_ssl:latest    
  docker run --restart=always -v //etc/ssl/certs:/ssl/private -d --name pum yetigo/osteotomy_ssl:latest 
 
-## display active containers 
+# display active containers 
  docker ps  
  docker container ls  
  
- ## stop Container:
+# stop Container:
 docker container stop pum   
 
-## remove Container:
+# remove all docker containers 
+docker rm $(docker ps -a -q)
+
+# remove Container:
 docker container rm pum  
 
-## display Images:
+# display Images:
 docker images
 
-## remove Image:
+# remove Image:
 docker image rmi yetigo/osteotomy:latest
+
+# remove all docker images 
+docker rmi $(docker images -q)
+
+# debugging docker run -> exit
+source: https://stackoverflow.com/questions/38112968/how-to-know-the-reason-why-a-docker-container-exits  
+docker logs $container_id / docker logs pum
+docker inspect $container_id / docker inspect pum
 
 
 
