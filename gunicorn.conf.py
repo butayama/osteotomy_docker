@@ -151,7 +151,7 @@ accesslog = '-'
 access_log_format = '%(h)s %(l)s %(u)s %(t)s "%(r)s" %(s)s %(b)s "%(f)s" "%(a)s"'
 
 # adding SSL support
-certfile = '/ssl/certs/osteotomy.eu.csr'
+certfile = 'osteotomy.eu.csr'
 keyfile = '/ssl/private/osteotomy.eu.key'
 
 # for using letsencrypt
