@@ -4,11 +4,12 @@ RUN adduser --debug --disabled-password osteotomy
 
 WORKDIR /home/osteotomy
 
-COPY /requirements/common.txt common.txt
-COPY /requirements/docker.txt docker.txt
+COPY /requirements/common.txt common.txt nginx.txt
+
 # RUN python -m venv venv
 RUN pip install --upgrade pip
 RUN pip install -r docker.txt
+RUN pip install -r nginx.txt
 
 COPY app app
 COPY ssl ssl
