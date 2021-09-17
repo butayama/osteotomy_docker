@@ -90,6 +90,9 @@ https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-s
 
  
 # deploy on server: download docker SSL container image 
+# in Windows PowerShell (sollte auch im Linux Terminal funktionieren):  
+ ssh uwe@85.214.33.21
+ password:**********
  docker pull yetigo/osteotomy_ssl:latest    
  docker run --restart=always -v //etc/ssl/certs:/ssl/private -d --name pum yetigo/osteotomy_ssl:latest 
 
