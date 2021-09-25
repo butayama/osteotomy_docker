@@ -14,7 +14,7 @@ RUN pip install -r nginx.txt
 COPY app app
 COPY ssl ssl
 # COPY osteotomy.py config.py osteotomy.eu.csr gunicorn.conf.py boot.sh ./
-COPY osteotomy.py config.py osteotomy.eu.csr chain_123.crt chain_23.crt boot.sh ./
+COPY osteotomy.py config.py osteotomy.eu.csr chain_123.crt boot.sh ./
 
 # COPY . .
 RUN chmod +x boot.sh
