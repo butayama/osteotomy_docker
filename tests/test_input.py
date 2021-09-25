@@ -1,4 +1,4 @@
-import app.input_angles as inan
+import flask_app.input_angles as inan
 
 def test_get_angle(monkeypatch):
     monkeypatch.setattr('builtins.input', lambda x: "27.1")

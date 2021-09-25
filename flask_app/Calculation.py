@@ -41,7 +41,7 @@ from ansimarkup import ansiprint
 from os import system, getcwd
 from os.path import join
 import sys
-from app.file_handling import text_file_object
+from flask_app.file_handling import text_file_object
 
 
 class CalculateAngles:

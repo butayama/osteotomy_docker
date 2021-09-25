@@ -1,5 +1,5 @@
 from os.path import join, exists
-import app.file_handling as fh
+import flask_app.file_handling as fh
 from io import StringIO
 import pytest
 

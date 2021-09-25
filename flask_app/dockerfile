@@ -10,7 +10,7 @@ COPY /requirements/docker.txt docker.txt
 RUN pip install --upgrade pip
 RUN pip install -r docker.txt
 
-COPY app app
+COPY flask_app flask_app
 COPY migrations migrations
 COPY osteotomy.py config.py boot.sh ./
 
@@ -26,5 +26,5 @@ ENV FLASK_APP osteotomy.py
 RUN chown -R osteotomy:osteotomy ./
 USER osteotomy
 
-EXPOSE 5000
+EXPOSE 8000
 ENTRYPOINT ["./boot.sh"]

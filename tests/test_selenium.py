@@ -3,8 +3,8 @@ import threading
 import time
 import unittest
 from selenium import webdriver
-from app import create_app, db, fake
-from app.models import Role, User, Post
+from flask_app import create_app, db, fake
+from flask_app.models import Role, User, Post
 
 
 class SeleniumTestCase(unittest.TestCase):

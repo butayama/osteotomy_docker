@@ -1,6 +1,6 @@
 import os
 import sys
-from app.file_handling import write_pickle
+from flask_app.file_handling import write_pickle
 import pytest
 
 myPath = os.path.dirname(os.path.abspath(__file__))
