@@ -4,17 +4,17 @@ RUN adduser --debug --disabled-password osteotomy
 
 WORKDIR /home/osteotomy
 
-COPY /requirements/common.txt common.txt
-COPY /requirements/docker.txt docker.txt
-# RUN python -m venv venv
+COPY common.txt .
+COPY docker.txt .
+RUN python -m venv venv
 RUN pip install --upgrade pip
 RUN pip install -r docker.txt
 
-COPY flask_app flask_app
-COPY migrations migrations
-COPY osteotomy.py config.py boot.sh ./
+# COPY flask_app flask_app
+# COPY migrations migrations
+# COPY osteotomy.py config.py boot.sh ./
 
-# COPY . .
+COPY . .
 RUN chmod +x boot.sh
 
 ENV FLASK_APP osteotomy.py
