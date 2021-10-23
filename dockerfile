@@ -1,5 +1,5 @@
 FROM python:3.8-slim-buster
-
+# docker run command does not succeed 211023
 RUN adduser --debug --disabled-password osteotomy
 
 WORKDIR /home/osteotomy
