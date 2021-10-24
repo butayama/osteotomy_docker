@@ -55,7 +55,6 @@ waitress
 wcwidth
 webencodings
 Werkzeug
-wheel
 WTForms
 
 
