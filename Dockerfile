@@ -1,5 +1,4 @@
 FROM python:3.8-alpine
-# docker run command does not succeed 211023
 
 ENV FLASK_APP osteotomy.py
 ENV FLASK_CONFIG docker
