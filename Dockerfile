@@ -31,8 +31,8 @@ COPY osteotomy.py config.py boot.sh ./
 # remove before deploy
 # ENV FLASK_DEBUG=1
 
-RUN chown -R flask_osteotomy:flask_osteotomy ./
-USER flask_osteotomy
+# RUN chown -R flask_osteotomy:flask_osteotomy ./
+# USER flask_osteotomy
 
 # runtime configuration
 EXPOSE 5000
