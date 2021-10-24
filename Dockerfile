@@ -1,4 +1,4 @@
-FROM python:3.13-alpine
+FROM python:3.11.a1-alpine3.14
 # docker run command does not succeed 211023
 RUN adduser --debug --disabled-password osteotomy
 
