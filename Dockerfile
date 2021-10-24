@@ -17,8 +17,8 @@ WORKDIR /home/osteotomy
 COPY /requirements requirements
 ENV DEBIAN_FRONTEND noninteractive
 RUN python -m venv venv
-RUN venv/bin/pip install --upgrade pip
-RUN venv/bin/pip install wheel greenlet
+# RUN venv/bin/pip install --upgrade pip
+# RUN venv/bin/pip install wheel greenlet
 RUN venv/bin/pip install -r requirements/docker.txt
 
 COPY app app

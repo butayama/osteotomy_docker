@@ -13,6 +13,7 @@ dominate
 Faker
 Flask
 Flask-Bootstrap
+flask_consent
 Flask-HTTPAuth
 Flask-Login
 Flask-Mail
@@ -23,6 +24,7 @@ flask-nav
 Flask-PageDown
 Flask-SQLAlchemy
 Flask-WTF
+greenlet
 html5lib
 httpie
 idna
@@ -53,6 +55,7 @@ waitress
 wcwidth
 webencodings
 Werkzeug
+wheel
 WTForms
 
 
