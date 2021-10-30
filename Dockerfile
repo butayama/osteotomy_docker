@@ -1,4 +1,5 @@
 FROM python:3.8-alpine
+# local testrun failes 31.10.21 15:05
 
 ENV FLASK_APP osteotomy.py
 ENV FLASK_CONFIG docker
