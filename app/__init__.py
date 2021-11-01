@@ -8,7 +8,7 @@ from flask_login import LoginManager
 from flask_pagedown import PageDown
 from flaskext.markdown import Markdown
 from config import config
-from flask_consent import Consent
+# from flask_consent import Consent
 
 bootstrap = Bootstrap()
 mail = Mail()
@@ -25,8 +25,8 @@ def create_app(config_name):
     app = Flask(__name__)
     app.config['CONSENT_FULL_TEMPLATE'] = 'consent.html'
     app.config['CONSENT_BANNER_TEMPLATE'] = 'consent_banner.html'
-    consent = Consent(app)
-    consent.add_standard_categories()
+    # consent = Consent(app)
+    # consent.add_standard_categories()
     app.config.from_object(config[config_name])
     config[config_name].init_app(app)
 
