@@ -8,12 +8,12 @@ ENV FLASK_DEBUG=1
 
 # https://stackoverflow.com/questions/36710459/how-do-i-make-a-comment-in-a-dockerfile
 
-# RUN apk update && apk --no-cache add g++ musl-dev && rm -rf /var/lib/apt/lists/*
-# RUN apk add linux-headers
-# RUN apk add libffi-dev
+RUN apk update && apk --no-cache add g++ musl-dev && rm -rf /var/lib/apt/lists/*
+RUN apk add linux-headers
+RUN apk add libffi-dev
 
 RUN adduser -D flask_osteotomy
-USER flask_osteotomy
+# USER flask_osteotomy
 
 WORKDIR /home/osteotomy
 
@@ -32,7 +32,13 @@ COPY osteotomy.py config.py boot.sh ./
 RUN chmod +x boot.sh
 
 RUN chown -R flask_osteotomy:flask_osteotomy ./
-# USER flask_osteotomy
+
+
+# https://github.com/filebrowser/filebrowser/issues/1513
+# standard_init_linux.go:228: exec user process caused: no such file or directory
+# ENV CGO_ENABLED=0
+
+USER flask_osteotomy
 
 # runtime configuration
 EXPOSE 5000
