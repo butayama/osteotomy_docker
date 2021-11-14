@@ -4,7 +4,7 @@ FROM python:3.8-alpine
 ENV FLASK_APP osteotomy.py
 ENV FLASK_CONFIG docker
 # remove before deploy
-ENV FLASK_DEBUG=1
+# ENV FLASK_DEBUG=1
 
 # https://stackoverflow.com/questions/36710459/how-do-i-make-a-comment-in-a-dockerfile
 
@@ -25,18 +25,13 @@ RUN venv/bin/pip install wheel
 RUN venv/bin/pip install -r requirements/docker.txt
 
 COPY app app
+COPY app/static static
 COPY migrations migrations
 COPY osteotomy.py config.py boot.sh ./
 
 # COPY . .
 RUN chmod +x boot.sh
-
 RUN chown -R flask_osteotomy:flask_osteotomy ./
-
-
-# https://github.com/filebrowser/filebrowser/issues/1513
-# standard_init_linux.go:228: exec user process caused: no such file or directory
-# ENV CGO_ENABLED=0
 
 USER flask_osteotomy
 
