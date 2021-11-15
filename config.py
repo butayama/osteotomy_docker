@@ -21,7 +21,7 @@ class Config:
     FLASKY_FOLLOWERS_PER_PAGE = 50
     FLASKY_COMMENTS_PER_PAGE = 30
     FLASKY_SLOW_DB_QUERY_TIME = 0.5
-    SERVER_NAME = 'osteotomytool.de'
+    # SERVER_NAME = 'osteotomytool.de' funktioniert nicht!
     # https://stackoverflow.com/questions/47002617/flasks-built-in-server-always-404-with-server-name-set
     # https://stackoverflow.com/questions/53008333/flask-app-config-take-its-default-value-instead-of-my-config-py
     # SERVER_NAME = 'osteotomytool.dev:5000' # for test test_home_page
