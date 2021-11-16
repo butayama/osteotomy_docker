@@ -6,9 +6,7 @@ from flask_nav.elements import Navbar, View
 
 class NavItems:
     topbar = Navbar('',
-                    View('CALCULATE', 'main.op_planning'),
-                    View('SIGN-RULES', 'main.op'),
-                    View('ABOUT', 'main.about'),
+                    View('ABOUT', 'main.about_under_construction'),
                     )
 
     rightbar = Navbar('',
@@ -18,6 +16,8 @@ class NavItems:
                       )
 
     not_used = Navbar('',
+                      View('CALCULATE', 'main.op_planning'),
+                      View('SIGN-RULES', 'main.op'),
                       View('HOME', 'main.index'),
                       View('CASE', 'main.case'),
                       View('MEASURE', 'main.measure'),

@@ -33,7 +33,7 @@ def server_shutdown():
 
 @main.route('/')
 def index():
-    return render_template('sign_rules.html', imp0rt = importlib.import_module, angle_signs="static/img/angle_signs.png")
+    return render_template('about_under_construction.html', imp0rt=importlib.import_module, angle_signs="static/img/angle_signs.png")
     # return render_template('index.html', imp0rt = importlib.import_module)
 
 
@@ -75,13 +75,13 @@ def op_planning():
         }
         return redirect(url_for('.op_planning_results', values=session['values']))
 
-    return render_template('calculate.html', form=form, imp0rt = importlib.import_module)
+    return render_template('calculate.html', form=form, imp0rt=importlib.import_module)
 
 
 @main.route('/op_planning_results', methods=['GET', 'POST'])
 def op_planning_results():
     return render_template('op_planning_results.html', values=session['values'], degrees=degrees, chr=chr,
-                           int=int, imp0rt = importlib.import_module)
+                           int=int, imp0rt=importlib.import_module)
 
 
 # @main.route('/measure')
@@ -91,7 +91,7 @@ def op_planning_results():
 
 @main.route('/sign')
 def op():
-    return render_template('sign_rules.html', imp0rt = importlib.import_module, angle_signs="static/img/angle_signs.png")
+    return render_template('sign_rules.html', imp0rt=importlib.import_module, angle_signs="static/img/angle_signs.png")
 
 
 # @main.route('/post_op')
@@ -101,4 +101,8 @@ def op():
 #
 @main.route('/about')
 def about():
-    return render_template('about.html', imp0rt = importlib.import_module)
+    return render_template('about.html', imp0rt=importlib.import_module)
+
+@main.route('/about_under_construction.html')
+def about_under_construction():
+    return render_template('about_under_construction.html', imp0rt=importlib.import_module)
