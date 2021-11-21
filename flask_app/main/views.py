@@ -99,6 +99,6 @@ def op():
 #     return render_template('post_op.html', imp0rt = importlib.import_module)
 #
 #
-# @main.route('/about')
-# def about():
-#     return render_template('about.html', imp0rt = importlib.import_module)
+@main.route('/about')
+def about():
+    return render_template('about.html', imp0rt = importlib.import_module)
