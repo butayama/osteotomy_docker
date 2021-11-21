@@ -103,6 +103,12 @@ def op():
 def about():
     return render_template('about.html', imp0rt=importlib.import_module)
 
+
+@main.route('/imprint')
+def about():
+    return render_template('imprint.html', imp0rt=importlib.import_module)
+
+
 @main.route('/about_under_construction.html')
 def about_under_construction():
     return render_template('about_under_construction.html', imp0rt=importlib.import_module)
