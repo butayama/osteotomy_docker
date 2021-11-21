@@ -9,7 +9,6 @@ class NavItems:
                     View('CALCULATE', 'main.op_planning'),
                     View('SIGN-RULES', 'main.op'),
                     View('ABOUT', 'main.about'),
-
                     )
 
     rightbar = Navbar('',
@@ -30,5 +29,6 @@ class NavItems:
                       View('FORUM', 'main.index'),
                       View('LOG IN', 'auth.login'),
                       View('POST_OP', 'main.post_op'),
+
 
                       )
