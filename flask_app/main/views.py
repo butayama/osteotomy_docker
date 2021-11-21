@@ -33,8 +33,10 @@ def server_shutdown():
 
 @main.route('/')
 def index():
-    return render_template('about_under_construction.html', imp0rt=importlib.import_module, angle_signs="static/img/angle_signs.png")
+    # return render_template('about_under_construction.html', imp0rt=importlib.import_module,
+    #                        angle_signs="static/img/angle_signs.png")
     # return render_template('index.html', imp0rt = importlib.import_module)
+    return render_template('sign_rules.html', imp0rt = importlib.import_module)
 
 
 # @main.route('/case')
@@ -105,10 +107,14 @@ def about():
 
 
 @main.route('/imprint')
-def about():
+def imprint():
     return render_template('imprint.html', imp0rt=importlib.import_module)
 
 
-@main.route('/about_under_construction.html')
-def about_under_construction():
-    return render_template('about_under_construction.html', imp0rt=importlib.import_module)
+@main.route('/privacy_policy')
+def privacy_policy():
+    return render_template('privacy_policy.html', imp0rt=importlib.import_module)
+
+# @main.route('/about_under_construction.html')
+# def about_under_construction():
+#     return render_template('about_under_construction.html', imp0rt=importlib.import_module)
