@@ -120,5 +120,6 @@ source: https://stackoverflow.com/questions/38112968/how-to-know-the-reason-why-
 docker logs $container_id / docker logs pum
 docker inspect $container_id / docker inspect pum
 
-
+Alpine linux:
+docker exec -it <container> /bin/sh
 

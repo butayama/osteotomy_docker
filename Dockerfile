@@ -24,8 +24,8 @@ RUN venv/bin/pip install --upgrade pip
 RUN venv/bin/pip install wheel
 RUN venv/bin/pip install -r requirements/docker.txt
 
-COPY app app
-# COPY app/static static
+COPY flask_app flask_app
+COPY flask_app/static static
 COPY migrations migrations
 COPY osteotomy.py config.py boot.sh ./
 
