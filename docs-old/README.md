@@ -82,9 +82,9 @@ https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-s
 
 # download docker container image 
  docker pull yetigo/osteotomy:latest  
- docker pull yetigo/osteotomytool:1.0.0  
+ docker pull yetigo/osteotomytool:1.1.0  
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest   
- docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomytool:1.0.0
+ docker run --restart=always  -d -p 8000:5000 --name pum_1.1.0 yetigo/osteotomytool:1.1.0
  
 # deploy on server: download docker SSL container image 
 # in Windows PowerShell (sollte auch im Linux Terminal funktionieren):  
