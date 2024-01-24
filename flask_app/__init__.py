@@ -6,7 +6,7 @@ from flask_moment import Moment
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_pagedown import PageDown
-from flaskext.markdown import Markdown
+# from flaskext.markdown import Markdown
 from config import config
 # from flask_consent import Consent
 
@@ -37,7 +37,7 @@ def create_app(config_name):
     login_manager.init_app(app)
     pagedown.init_app(app)
     # nav.init_app(app)
-    Markdown(app, extensions=['fenced_code'])
+    # Markdown(app, extensions=['fenced_code'])
 
     if app.config['SSL_REDIRECT']:
         from flask_talisman import Talisman

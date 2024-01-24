@@ -1,4 +1,4 @@
-from flask_nav.elements import Navbar, View
+# from flask_nav.elements import Navbar, View
 
 def get_nav_items():
     return [
