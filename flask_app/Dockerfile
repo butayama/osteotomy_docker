@@ -1,4 +1,8 @@
-FROM python:3.8-slim-buster
+FROM python:3.12-slim-bookworm
+
+# Install gcc, necessary libraries, and clean up afterwards
+RUN apt-get update && apt-get install -y --no-install-recommends gcc libc6-dev \
+ && rm -rf /var/lib/apt/lists/*
 
 RUN adduser --debug --disabled-password flask_app
 
