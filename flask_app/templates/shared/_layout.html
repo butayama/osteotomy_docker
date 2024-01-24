@@ -23,7 +23,13 @@
 
 {% block navbar %}
 {{ super() }}
-    {{ nav.top.render() }}
+    <div class="navbar navbar-default">
+      <ul class="navbar-nav">
+          {% for item in nav_items %}
+            <li><a href="{{ url_for(item.endpoint) }}">{{ item.name }}</a></li>
+          {% endfor %}
+      </ul>
+    </div>
 {% endblock %}
 
 {#{%  block content_header %}#}

@@ -1,23 +1,12 @@
 from flask import render_template, redirect, url_for, abort, request, \
     current_app, session
-from flask_sqlalchemy import get_debug_queries
 from . import main
+from ..navs.nav_items import get_nav_items
 from .forms import CalculateForm
 from ..Calculation import CalculateAngles as ca
 import os
 from math import degrees
 import importlib
-
-
-@main.after_app_request
-def after_request(response):
-    for query in get_debug_queries():
-        if query.duration >= current_app.config['FLASKY_SLOW_DB_QUERY_TIME']:
-            current_app.logger.warning(
-                'Slow query: %s\nParameters: %s\nDuration: %fs\nContext: %s\n'
-                % (query.statement, query.parameters, query.duration,
-                   query.context))
-    return response
 
 
 @main.route('/shutdown')
@@ -36,7 +25,8 @@ def index():
     # return render_template('about_under_construction.html', imp0rt=importlib.import_module,
     #                        angle_signs="static/img/angle_signs.png")
     # return render_template('index.html', imp0rt = importlib.import_module)
-    return render_template('sign_rules.html', imp0rt = importlib.import_module)
+    nav_items = get_nav_items()
+    return render_template('sign_rules.html', imp0rt = importlib.import_module, nav_items=nav_items)
 
 
 # @main.route('/case')
@@ -46,6 +36,7 @@ def index():
 
 @main.route('/op_planning', methods=['GET', 'POST'])
 def op_planning():
+    nav_items = get_nav_items()
     coronal_component_C = 0
     sagittal_component_S = 0
     torsion_component_T = 0
@@ -77,13 +68,15 @@ def op_planning():
         }
         return redirect(url_for('.op_planning_results', values=session['values']))
 
-    return render_template('calculate.html', form=form, imp0rt=importlib.import_module)
+    return render_template('calculate.html', form=form, imp0rt=importlib.import_module,
+                           nav_items=nav_items)
 
 
 @main.route('/op_planning_results', methods=['GET', 'POST'])
 def op_planning_results():
-    return render_template('op_planning_results.html', values=session['values'], degrees=degrees, chr=chr,
-                           int=int, imp0rt=importlib.import_module)
+    nav_items = get_nav_items()
+    return render_template('op_planning_results.html', values=session['values'], degrees=degrees,
+                           chr=chr, int=int, imp0rt=importlib.import_module, nav_items=nav_items)
 
 
 # @main.route('/measure')
@@ -93,7 +86,9 @@ def op_planning_results():
 
 @main.route('/sign')
 def op():
-    return render_template('sign_rules.html', imp0rt=importlib.import_module, angle_signs="static/img/angle_signs.png")
+    nav_items = get_nav_items()
+    return render_template('sign_rules.html', imp0rt=importlib.import_module,
+                           angle_signs="static/img/angle_signs.png", nav_items=nav_items)
 
 
 # @main.route('/post_op')
@@ -103,17 +98,20 @@ def op():
 #
 @main.route('/about')
 def about():
-    return render_template('about.html', imp0rt=importlib.import_module)
+    nav_items = get_nav_items()
+    return render_template('about.html', imp0rt=importlib.import_module, nav_items=nav_items)
 
 
 @main.route('/imprint')
 def imprint():
-    return render_template('imprint.html', imp0rt=importlib.import_module)
+    nav_items = get_nav_items()
+    return render_template('imprint.html', imp0rt=importlib.import_module, nav_items=nav_items)
 
 
 @main.route('/privacy_policy')
 def privacy_policy():
-    return render_template('privacy_policy.html', imp0rt=importlib.import_module)
+    nav_items = get_nav_items()
+    return render_template('privacy_policy.html', imp0rt=importlib.import_module, nav_items=nav_items)
 
 # @main.route('/about_under_construction.html')
 # def about_under_construction():

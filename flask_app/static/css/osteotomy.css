@@ -3,9 +3,26 @@
     /*background-color: #369e1f;*/
 }
 
+/*.navbar-default .navbar-nav > li > a {*/
+/*    color: white;*/
+/*    font-size: 25px;*/
+/*}*/
+
+.navbar-default .navbar-nav {
+    font-size: 35px;
+    list-style: none; /* This removes the bullet points */
+    display: flex; /* This arranges the items in line */
+    justify-content: space-around; /* This distributes the remaining space around the elements */
+    align-items: center; /* This centers the items vertically */
+    padding: 0; /* This removes any padding that might misalign your items */
+}
+
+.navbar-default .navbar-nav > li {
+    margin: 0 20px; /* Add your desired space between the elements */
+}
+
 .navbar-default .navbar-nav > li > a {
     color: white;
-    font-size: 25px;
 }
 
 .fluid-top {

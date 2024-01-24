@@ -2,7 +2,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_mail import Mail
 from flask_moment import Moment
-from flask_nav import Nav
+# from flask_nav import Nav
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_pagedown import PageDown
@@ -13,7 +13,7 @@ from config import config
 bootstrap = Bootstrap()
 mail = Mail()
 moment = Moment()
-nav = Nav()
+# nav = Nav()
 db = SQLAlchemy()
 pagedown = PageDown()
 
@@ -36,7 +36,7 @@ def create_app(config_name):
     db.init_app(app)
     login_manager.init_app(app)
     pagedown.init_app(app)
-    nav.init_app(app)
+    # nav.init_app(app)
     Markdown(app, extensions=['fenced_code'])
 
     if app.config['SSL_REDIRECT']:
@@ -46,7 +46,7 @@ def create_app(config_name):
     from .main import main as main_blueprint
     app.register_blueprint(main_blueprint)
 
-    from .navs.nav_items import NavItems as NavItems
-    nav.register_element('top', NavItems.topbar)
+    # from .navs.nav_items import NavItems as NavItems
+    # nav.register_element('top', NavItems.topbar)
 
     return app

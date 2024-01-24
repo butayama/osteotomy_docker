@@ -20,7 +20,7 @@ Flask-Mail
 Flask-Markdown
 Flask-Migrate
 Flask-Moment
-flask-nav
+# flask-nav
 Flask-PageDown
 Flask-SQLAlchemy
 Flask-WTF
