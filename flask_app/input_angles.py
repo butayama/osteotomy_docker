@@ -1,4 +1,4 @@
-from app.file_handling import store_pickle_file
+from flask_app.file_handling import store_pickle_file
 
 
 def get_angle(query):

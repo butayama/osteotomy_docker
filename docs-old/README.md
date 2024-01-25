@@ -70,32 +70,56 @@ https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-s
    
 # after changes: create a new image
  docker build -t yetigo/osteotomy:latest .  
+ docker build -t yetigo/osteotomytool:1.0.1 .  
  
 # test the new image locally   
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest  
+ docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomytool:1.0.1  
  
 # upload docker container image  
  docker push yetigo/osteotomy:latest  
+ docker push yetigo/osteotomytool:1.0.1
 
 # download docker container image 
  docker pull yetigo/osteotomy:latest  
+ docker pull yetigo/osteotomytool:1.1.0  
  docker run --name pum -d -p 8000:5000 --rm yetigo/osteotomy:latest   
+ docker run --restart=always  -d -p 8000:5000 --name pum_1.1.0 yetigo/osteotomytool:1.1.0
  
-## display active containers 
+# deploy on server: download docker SSL container image 
+# in Windows PowerShell (sollte auch im Linux Terminal funktionieren):  
+ ssh uwe@85.214.33.21
+ password:**********
+ docker pull yetigo/osteotomy_ssl:latest    
+ docker run --restart=always -v //etc/ssl/certs:/ssl/private -d --name pum yetigo/osteotomy_ssl:latest 
+
+# display active containers 
  docker ps  
  docker container ls  
  
- ## stop Container:
+# stop Container:
 docker container stop pum   
 
-## remove Container:
+# remove all docker containers 
+docker rm $(docker ps -a -q)
+
+# remove Container:
 docker container rm pum  
 
-## display Images:
+# display Images:
 docker images
 
-## remove Image:
+# remove Image:
 docker image rmi yetigo/osteotomy:latest
 
+# remove all docker images 
+docker rmi $(docker images -q)
 
+# debugging docker run -> exit
+source: https://stackoverflow.com/questions/38112968/how-to-know-the-reason-why-a-docker-container-exits  
+docker logs $container_id / docker logs pum
+docker inspect $container_id / docker inspect pum
+
+Alpine linux:
+docker exec -it <container> /bin/sh
 

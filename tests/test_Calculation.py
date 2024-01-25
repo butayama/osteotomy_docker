@@ -4,7 +4,7 @@ Be careful - it's difficult!!!
 Source: https://randomascii.wordpress.com/2012/02/25/comparing-floating-point-numbers-2012-edition/
 """
 import pytest
-import app.Calculation as co
+import flask_app.Calculation as co
 import sys
 
 FLT_EPSILON = sys.float_info.epsilon

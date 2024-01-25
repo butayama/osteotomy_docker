@@ -1,0 +1,104 @@
+ALLGEMEIN
+  605  history
+  561  netstat -a -n
+  636  sudo netstat -plnt
+  1238  sudo apt install tree
+  1240  tree -a --filelimit 10
+  1245  sudo tree -as -dirfirst -o /home/uwe/<filename>
+  1364  sudo reboot
+
+DOCKER
+  554  docker ps
+  653  docker ps -a
+  587  docker ps --filter name=redis -q
+  562  docker container ls
+  577  sudo docker service ls
+  578  sudo docker service ps nginx
+  616  docker container stop <container>
+  733  docker stop osteo
+  1351  docker build -t yetigo/osteotomy:0.0.0 .
+remove all containers
+  617  docker rm $(docker ps -a -q)
+  657  docker rm <container>
+  632  docker pull yetigo/<container>:<tag>
+  633  740  docker images
+remove all images
+  741  docker rmi $(docker images -q)
+  654  docker inspect <container>
+  1538  docker run --restart=always -v /flask_app -d -p 8000:5000 --name pum yetigo/osteotomy:latest
+  726  docker run -e VIRTUAL_HOST=osteotomy.eu  --name osteo -d -p 8000:5000 --rm yetigo/osteotomy:latest
+  567  docker swarm init
+  575  docker secret ls
+  600  docker container exec $(docker ps --filter name=redis -q) ls -l /run/secrets
+  601  docker container exec $(docker ps --filter name=redis -q) cat /run/secrets/my_secret_data
+debugging
+  1133  docker logs -f pum
+  1147  docker inspect pum
+  1198  docker exec -it pum /bin/bash
+docker: Error response from daemon: no space left on device
+  Add --rm to your docker run command line
+  free
+  df -h
+  docker info
+  docker volume ls -q -f dangling=true
+  docker volume rm `docker volume ls -q -f dangling=true`
+  docker system prune
+  docker volume prune
+  
+  1700  df -i
+  https://stackoverflow.com/questions/653096/how-to-free-inode-usage
+  echo 'echo $(ls -a "$1" | wc -l) $1' >/tmp/count_em_$$
+  chmod 700 /tmp/count_em_$$
+  find . -mount -type d -print0 | xargs -0 -n1 /tmp/count_em_$$ | sort -n
+  rm -f /tmp/count_em_$$
+  sudo reboot
+  1700  df -i
+
+   /var/lib/nginx/proxy/3/00/0000000003" failed (13: Permission denied) while reading upstream,
+  https://stackoverflow.com/questions/25993826/err-content-length-mismatch-on-nginx-and-proxy-on-chrome-when -loading-large-file
+
+
+
+DOCKER-COMPOSE
+  618  docker-compose up --build -d
+  1057  docker-compose rm -fs
+  
+
+FIREWALL
+  604  ufw status
+  606  sudo ufw status numbered
+  
+
+FLASK
+  1421  sudo apt install python3-flask
+  760  flask --help
+  761  export FLASK_APP=osteotomy.py
+  1417  flask test
+
+
+GIT
+  630  git clone yetigo/test_cert_nginx_gunicorn
+  638  git clone https://github.com/butayama/osteotomy_docker.git
+  960  git update https://github.com/butayama/osteotomy_docker.git
+  962  git pull https://github.com/butayama/osteotomy_docker.git
+  
+PYTHON
+  684  pip install -r requirements/python-requirements.txt
+  685  pip install pytest
+  686  python -V
+  
+  
+  
+
+NGINX
+  552  sudo reboot
+  551  sudo systemctl status nginx.service
+  549  sudo systemctl restart nginx
+  547  sudo systemctl stop nginx
+  622  sudo systemctl status traefik
+  623  sudo systemctl status
+  823  sudo nano /etc/nginx/nginx.conf
+  647  sudo nano //etc/nginx/conf.d/project.conf
+  816  mv project.conf project.conf.old_1
+  
+  

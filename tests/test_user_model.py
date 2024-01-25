@@ -1,8 +1,8 @@
 import unittest
 import time
 from datetime import datetime
-from app import create_app, db
-from app.models import User, AnonymousUser, Role, Permission, Follow
+from flask_app import create_app, db
+from flask_app.models import User, AnonymousUser, Role, Permission, Follow
 
 
 class UserModelTestCase(unittest.TestCase):

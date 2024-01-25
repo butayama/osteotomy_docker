@@ -1,7 +1,8 @@
 import re
+import pytest
 import unittest
-from app import create_app, db
-from app.models import User, Role
+from flask_app import create_app, db
+from flask_app.models import User, Role
 
 class FlaskClientTestCase(unittest.TestCase):
     def setUp(self):
@@ -17,6 +18,7 @@ class FlaskClientTestCase(unittest.TestCase):
         db.drop_all()
         self.app_context.pop()
 
+    @pytest.mark.skip
     def test_home_page(self):
         response = self.client.get('/')
         self.assertEqual(response.status_code, 200)

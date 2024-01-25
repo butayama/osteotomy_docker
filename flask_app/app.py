@@ -1,5 +1,8 @@
+from flask import Flask
 import os
 from dotenv import load_dotenv
+
+server = Flask(__name__)
 
 dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
 if os.path.exists(dotenv_path):
