@@ -98,28 +98,28 @@ https://stackoverflow.com/questions/51729836/error-response-from-daemon-cannot-s
  docker container ls  
  
 # stop Container:
-docker container stop pum   
+ docker container stop pum   
 
 # remove all docker containers 
-docker rm $(docker ps -a -q)
+ docker rm $(docker ps -a -q)
 
 # remove Container:
-docker container rm pum  
+ docker container rm pum  
 
 # display Images:
-docker images
+ docker images
 
 # remove Image:
-docker image rmi yetigo/osteotomy:latest
+ docker image rmi yetigo/osteotomy:latest
 
 # remove all docker images 
-docker rmi $(docker images -q)
+ docker rmi $(docker images -q)
 
 # debugging docker run -> exit
-source: https://stackoverflow.com/questions/38112968/how-to-know-the-reason-why-a-docker-container-exits  
-docker logs $container_id / docker logs pum
-docker inspect $container_id / docker inspect pum
-
-Alpine linux:
-docker exec -it <container> /bin/sh
+ source: https://stackoverflow.com/questions/38112968/how-to-know-the-reason-why-a-docker-container-exits  
+ docker logs $container_id / docker logs pum
+ docker inspect $container_id / docker inspect pum
+ 
+ Alpine linux:
+ docker exec -it <container> /bin/sh
 

@@ -1,0 +1,29 @@
+server {
+    listen 80;
+    listen [::]:80;
+
+    server_name osteotomytool.de www.osteotomytool.de;
+
+    location / {
+        root /var/www/osteotomytool.de/html;
+        index index.html index.htm index.nginx-debian.html;
+        try_files $uri $uri/ =404;
+    }
+
+    location /mediawiki {
+        root /var/www/html/mediawiki-1.35.1;
+        index index.php;
+        try_files $uri $uri/ @rewrite;
+
+        location ~ \.php$ {
+            include snippets/fastcgi-php.conf;
+            fastcgi_pass unix:/var/run/php/php7.0-fpm.sock;
+            fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        }
+    }
+
+    location @rewrite {
+        rewrite ^/mediawiki/(.*)$ /mediawiki/index.php;
+    }
+}
+
