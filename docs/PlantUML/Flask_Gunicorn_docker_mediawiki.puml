@@ -1,0 +1,22 @@
+@startuml
+
+package "Docker" {
+  [Flask App 1]
+  [Gunicorn 1]
+  [Flask App 2]
+  [Gunicorn 2]
+  [MediaWiki]
+}
+
+database "Nginx"
+
+cloud "Client"
+
+Client --> Nginx: Requests
+Nginx --> [Flask App 1]: Routes /app1
+Nginx --> [Flask App 2]: Routes /app2
+Nginx --> [MediaWiki]: Routes /wiki
+[Flask App 1] --> [Gunicorn 1]: Served by
+[Flask App 2] --> [Gunicorn 2]: Served by
+
+@enduml
