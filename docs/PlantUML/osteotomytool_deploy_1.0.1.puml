@@ -1,0 +1,15 @@
+@startuml
+
+:start;
+:Pull python:3.8-alpine Docker image;
+:Add necessary dependencies;
+:Add user flask_osteotomy;
+:Create working directory;
+:Install Python packages in a virtual environment;
+:Copy the application and necessary files;
+:Run the entry point boot.sh;
+:Expose the Flask application on port `5000` within Docker container;
+:Serve application using Gunicorn WSGI server;
+:stop;
+
+@enduml
