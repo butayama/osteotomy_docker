@@ -1,39 +1,42 @@
-FROM python:3.12-alpine
-# local testrun failes 31.10.21 15:05
+# Base image: Use the latest Python 3.12-slim as foundation
+FROM python:3.12-slim
 
-ENV FLASK_APP osteotomy.py
-ENV FLASK_CONFIG docker
-# remove before deploy
-# ENV FLASK_DEBUG=1
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1  # Prevent Python from writing .pyc files
+ENV PYTHONUNBUFFERED 1         # Disable buffering for better log visibility
+ENV FLASK_APP flask_app/app.py
+ENV FLASK_CONFIG production
 
-# https://stackoverflow.com/questions/36710459/how-do-i-make-a-comment-in-a-dockerfile
+# Set the working directory in the container
+WORKDIR /app
 
-RUN apk update && apk --no-cache add g++ musl-dev && rm -rf /var/lib/apt/lists/*
-RUN apk add linux-headers
-RUN apk add libffi-dev
+# Copy only the requirements file first for dependency installation
+COPY requirements/docker.txt requirements.txt
 
-RUN adduser -D flask_osteotomy
-# USER flask_osteotomy
+# Install system dependencies and Python requirements
+RUN apt-get update && \
+    apt-get install -y libpq-dev && \
+    pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 
-WORKDIR /home/osteotomy
+# Copy the entire application code into the container
+COPY flask_app /app/flask_app
+COPY boot.sh config.py gunicorn.conf.py /app/
 
-COPY /requirements requirements
-ENV DEBIAN_FRONTEND noninteractive
-RUN python -m venv venv
-RUN venv/bin/pip install --upgrade pip
-RUN venv/bin/pip install wheel
-RUN venv/bin/pip install -r requirements/docker.txt
+# Ensure that boot.sh is executable
+RUN chmod +x /app/boot.sh
 
-COPY flask_app flask_app
-COPY flask_app/migrations migrations
-COPY osteotomy.py config.py boot.sh ./
+# Create a dedicated user and fix directory permissions
+RUN useradd -m flaskuser && \
+    chown -R flaskuser:flaskuser /app
 
-# COPY . .
-RUN chmod +x boot.sh
-RUN chown -R flask_osteotomy:flask_osteotomy ./
+# Switch to the non-root user for security
+USER flaskuser
 
-USER flask_osteotomy
+# Expose the application port (8000) for Gunicorn
+EXPOSE 8000
 
-# runtime configuration
-EXPOSE 5000
-ENTRYPOINT ["./boot.sh"]
+# Use boot.sh as the default entry point
+CMD ["/app/boot.sh"]

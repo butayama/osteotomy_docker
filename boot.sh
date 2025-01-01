@@ -1,8 +1,17 @@
-#!/bin/sh
-# Use notepad++, go to edit -> EOL conversion -> change from CRLF to LF. (
-# see: https://stackoverflow.com/questions/51508150/standard-init-linux-go190-exec-user-process-caused-no-such-file-or-directory
-source venv/bin/activate
-flask deploy
-# flask db upgrade
-# flask translate compile
-exec gunicorn -b 0.0.0.0:5000 --access-logfile - --error-logfile - osteotomy:app
+#!/bin/bash
+
+echo "Running pre-start deployment tasks..."
+
+# Check if the migrations folder exists; if not, initialize it
+if [ ! -d "migrations" ]; then
+  echo "Migrations folder not found. Initializing..."
+  flask db init
+fi
+
+# Run migrations
+flask db migrate -m "Initial migration" || echo "No migrations to apply"
+flask db upgrade || echo "Database already up to date"
+
+# Start the Gunicorn server
+echo "Starting Flask app with Gunicorn..."
+exec gunicorn -w 4 -b 0.0.0.0:8000 --access-logfile - --error-logfile - flask_app.app:app

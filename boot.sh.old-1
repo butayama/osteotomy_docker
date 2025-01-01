@@ -1,0 +1,12 @@
+#!/bin/bash
+
+# Run deployment tasks (e.g., database migrations, setup)
+echo "Running pre-start deployment tasks..."
+flask deploy || {
+  echo "Flask deployment failed; exiting."
+  exit 1
+}
+
+# Launch the Flask app using Gunicorn
+echo "Starting Flask app with Gunicorn..."
+exec gunicorn -w 4 -b 0.0.0.0:8000 --access-logfile - --error-logfile - flask_app.app:app
