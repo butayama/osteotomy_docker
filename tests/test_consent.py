@@ -13,6 +13,20 @@ from flask_consent import Consent, ConsentData
 
 
 def make_app_and_consent():
+    """
+    Creates and configures a Flask application with a consent management setup.
+
+    The application is initialized with predefined configurations and a Consent
+    object is added. Consent categories are initialized with standard categories.
+    Two routes are defined: one at the root endpoint to return consent preferences
+    and another to display a banner for consent instructions.
+
+    Returns
+    -------
+    tuple
+        A tuple consisting of the Flask application instance and the initialized
+        Consent object.
+    """
     app = Flask(__name__)
     app.config['CONSENT_FULL_TEMPLATE'] = 'full.html'
     app.config['CONSENT_BANNER_TEMPLATE'] = 'banner.html'

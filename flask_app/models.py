@@ -1,3 +1,7 @@
+"""
+models.py
+"""
+
 from datetime import datetime
 import hashlib
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -11,6 +15,21 @@ from . import db, login_manager
 
 
 class Permission:
+    """
+    Represents different levels of permissions associated with user roles.
+
+    This class defines constants representing various permission levels.
+    These constants can be used to assign or compare permissions in user
+    management systems.
+
+    Attributes:
+        FOLLOW (int): Permission level allowing a user to follow other users.
+        COMMENT (int): Permission level allowing a user to make comments.
+        WRITE (int): Permission level allowing a user to create or write content.
+        MODERATE (int): Permission level allowing a user to moderate content
+        such as approving or rejecting submissions.
+        ADMIN (int): Permission level granting full administrative access.
+    """
     FOLLOW = 1
     COMMENT = 2
     WRITE = 4
@@ -19,6 +38,13 @@ class Permission:
 
 
 class Role(db.Model):
+    """
+    Represents a role within the application, which defines a set of permissions
+    and is associated with users. Roles also define a default role for new users.
+
+    This class includes methods for managing permissions, resetting them, checking
+    permission existence, and inserting predefined roles.
+    """
     __tablename__ = 'roles'
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), unique=True)
@@ -72,6 +98,20 @@ class Role(db.Model):
 
 
 class Follow(db.Model):
+    """
+    Represents the 'follows' relationship between users in a social network.
+
+    This class models a many-to-many relationship where a user can follow other
+    users. It stores the IDs of the follower and the followed user, along with
+    the time the follow action was performed. Utilized in database interactions
+    to store and query follow relationships within the application.
+
+    Attributes:
+        __tablename__ (str): Specifies the table name in the database.
+        follower_id: The ID of the user who is following another user.
+        followed_id: The ID of the user being followed.
+        timestamp: The time when the follow action was recorded.
+    """
     __tablename__ = 'follows'
     follower_id = db.Column(db.Integer, db.ForeignKey('users.id'),
                             primary_key=True)
@@ -81,6 +121,106 @@ class Follow(db.Model):
 
 
 class User(UserMixin, db.Model):
+    """
+    Represents a user in the application with authentication, authorization, and
+    profile management capabilities.
+
+    The User class integrates with a database and a web application context to handle user
+    information, authentication, and role-based access control. It supports functionalities
+    such as verifying passwords, managing user roles, generating tokens for actions like
+    confirmation and password resets, managing follow relationships, and creating user-specific
+    representations. The class is designed to be used as part of a larger application that
+    handles user data and interactions, leveraging SQLAlchemy for database interactions.
+
+    Attributes:
+        __tablename__ (str): The name of the table in the database.
+        id (int): The unique identifier for a user.
+        email (str): The email address of the user.
+        username (str): The username chosen by the user.
+        role_id (int): The foreign key linking the user to their role.
+        password_hash (str): The hashed representation of the user's password.
+        confirmed (bool): Indicates whether the user's account has been confirmed.
+        name (str): The full name of the user.
+        location (str): The geographical location of the user.
+        about_me (str): A self-description of the user.
+        member_since (datetime): The date and time when the user joined.
+        last_seen (datetime): The date and time when the user was last active.
+        avatar_hash (str): The hash value for the user's gravatar.
+        posts (query): A dynamic list of posts authored by the user.
+        followed (query): A list of users that the user is following.
+        followers (query): A list of users that follow the user.
+        comments (query): A dynamic list of comments made by the user.
+
+    Methods:
+        add_self_follows:
+            Adds a self-follow for every user in the database if not already present.
+
+        password:
+            Property to restrict access and modification of raw password values.
+
+        verify_password:
+            Verifies that the entered password matches the stored hash.
+
+        generate_confirmation_token:
+            Generates a token for email confirmation with a given expiration.
+
+        confirm:
+            Confirms a user's account using a provided token.
+
+        generate_reset_token:
+            Generates a token for resetting the password with a given expiration.
+
+        reset_password (staticmethod):
+            Resets the password for a user identified by a token.
+
+        generate_email_change_token:
+            Generates a token for changing the email address of the user.
+
+        change_email:
+            Updates the user's email address using an email change token.
+
+        can:
+            Checks if a user has a specific permission.
+
+        is_administrator:
+            Checks if the user has administrator privileges.
+
+        ping:
+            Updates the user's last_seen timestamp to the current time.
+
+        gravatar_hash:
+            Computes a hash based on the user's email for generating a Gravatar.
+
+        gravatar:
+            Generates a Gravatar URL for the user based on their email hash.
+
+        follow:
+            Follows another user if not already following.
+
+        unfollow:
+            Unfollows a user if currently following.
+
+        is_following:
+            Checks if the current user is following another user.
+
+        is_followed_by:
+            Checks if the current user is followed by another user.
+
+        followed_posts:
+            Property to retrieve posts by users followed by the current user.
+
+        to_json:
+            Converts the user object into a JSON serializable dictionary.
+
+        generate_auth_token:
+            Produces an authentication token for the user with an expiration.
+
+        verify_auth_token (staticmethod):
+            Validates an authentication token and retrieves the user.
+
+        __repr__:
+            Provides a string representation of the user instance.
+    """
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(64), unique=True, index=True)
@@ -272,6 +412,13 @@ class User(UserMixin, db.Model):
 
 
 class AnonymousUser(AnonymousUserMixin):
+    """
+    Represents an anonymous user with no permissions or administrative privileges.
+
+    This class extends the AnonymousUserMixin to provide methods for checking user
+    permissions and administrative status. It is generally used in cases where a user
+    is not authenticated or does not have a specific role in the system.
+    """
     def can(self, permissions):
         return False
 
@@ -283,10 +430,60 @@ login_manager.anonymous_user = AnonymousUser
 
 @login_manager.user_loader
 def load_user(user_id):
+    """
+    This function is a Flask-Login user loader. It retrieves a user object from the database
+    using the provided user ID. The retrieved user object allows Flask-Login to manage the
+    user session. The function expects the user ID to be passed as an argument and converts
+    it to an integer before querying the database.
+
+    Args:
+        user_id (str): The ID of the user as a string.
+
+    Returns:
+        User: A User object corresponding to the provided user ID or None if no user
+        is found.
+    """
     return User.query.get(int(user_id))
 
 
 class Post(db.Model):
+    """
+    Represents a blog post in the application.
+
+    The `Post` class models a blog post and contains related metadata, such as
+    its creation timestamp, author, and associated comments. It also includes
+    methods for converting posts to and from JSON format for API communication.
+
+    Attributes
+    ----------
+    id : int
+        Unique identifier for the post.
+    body : str
+        Content of the post.
+    body_html : str
+        HTML-rendered content of the post.
+    timestamp : datetime
+        The time when the post was created.
+    author_id : int
+        Foreign key referencing the id of the author user.
+    comments : dynamic relationship
+        Relationship to the `Comment` model representing comments on the post.
+
+    Methods
+    -------
+    on_changed_body(target: Any, value: Any, oldvalue: Any, initiator: Any)
+        Automatically sanitizes and renders the post body as HTML when the body
+        content is changed.
+
+    to_json() -> dict
+        Converts the post object into a JSON-serializable dictionary containing
+        key details about the post.
+
+    from_json(json_post: dict) -> 'Post'
+        Creates a `Post` object from a JSON dictionary by extracting the post
+        body and initializing the post. Raises a `ValidationError` if the JSON
+        does not contain a valid post body.
+    """
     __tablename__ = 'posts'
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.Text)
@@ -328,6 +525,52 @@ db.event.listen(Post.body, 'set', Post.on_changed_body)
 
 
 class Comment(db.Model):
+    """
+    Represents a comment within a blogging system.
+
+    This class defines the structure of a comment and its associated properties,
+    including the ability to process and transform the comment body, convert
+    its attributes to a JSON-serializable format, and create a comment from
+    JSON data. It is designed to work with SQLAlchemy and is part of a broader
+    database schema for a blogging or similar content-management application.
+
+    Attributes
+    ----------
+    id : int
+        Unique identifier for the comment.
+    body : str
+        The plain-text body of the comment written by the user.
+    body_html : str
+        The HTML-rendered version of the comment body.
+    timestamp : datetime
+        Date and time the comment was created (default is the current UTC time).
+    disabled : bool
+        Indicates whether the comment is disabled.
+    author_id : int
+        Foreign key linking the comment to its author (user).
+    post_id : int
+        Foreign key linking the comment to its associated post.
+
+    Methods
+    -------
+    on_changed_body(target, value, oldvalue, initiator)
+        Transforms the body of the comment into sanitized HTML when the
+        body value changes. Ensures that only allowed HTML tags are present.
+
+    to_json()
+        Converts the comment attributes into a JSON-serializable dictionary
+        for API responses.
+
+    from_json(json_comment)
+        Creates a new Comment object from a JSON dictionary. Validates that
+        the dictionary includes a non-empty "body" field.
+
+    Raises
+    ------
+    ValidationError
+        Raised by from_json when the "body" field in the input JSON data
+        is missing or empty.
+    """
     __tablename__ = 'comments'
     id = db.Column(db.Integer, primary_key=True)
     body = db.Column(db.Text)
